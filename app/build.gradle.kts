@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mamspaps"
+    namespace = "com.mams.paps"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mamspaps"
+        applicationId = "com.mams.paps"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

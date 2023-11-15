@@ -1,4 +1,4 @@
-package com.mamspaps
+package com.mams.paps
 
 import org.junit.Test
 
