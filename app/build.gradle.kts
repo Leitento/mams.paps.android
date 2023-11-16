@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+    implementation(libs.viewbindingdelegate)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
