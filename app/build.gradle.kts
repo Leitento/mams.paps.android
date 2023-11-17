@@ -26,6 +26,9 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
     kotlin {
         jvmToolchain(17)
     }
@@ -33,8 +36,11 @@ android {
 
 dependencies {
     implementation(libs.core.ktx)
+    implementation(libs.core.splashscreen)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.constraintlayout)
+    implementation(libs.viewbindingdelegate)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
