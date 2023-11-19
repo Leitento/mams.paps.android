@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.databinding.ActivityMainBinding
+import com.mams.paps.ui.FirstOnboardingFragment
+import com.mams.paps.ui.OnboardingActivity
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -20,5 +22,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false
         }
+
+//        if (savedInstanceState == null) {
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, FirstOnboardingFragment())
+//                .commit()
+//        }
     }
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MAMS.PAPS</string>
+    <string name="button_next">Далее</string>
+    <string name="text_first_screen">От родителей\nродителям!</string>
+    <string name="text_second_screen">Детям будет интересно!</string>
+    <string name="text_third_screen">Локации, которые подходят именно вашей семье.</string>
 </resources>
