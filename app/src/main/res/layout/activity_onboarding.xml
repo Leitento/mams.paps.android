@@ -9,27 +9,31 @@
 
     <ImageView
         android:id="@+id/screen_image"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dots_state"
+        />
 
     <ImageView
         android:id="@+id/dots_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/screen_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_screen"
         />
 
     <TextView
         android:id="@+id/text_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -37,6 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dots_state"
+        app:layout_constraintBottom_toTopOf="@id/button_to_next_screen"
         />
 
     <androidx.constraintlayout.utils.widget.MotionButton
@@ -44,13 +49,14 @@
         android:layout_width="183dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/btn_background"
         android:text="@string/onboarding_next"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_screen"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
