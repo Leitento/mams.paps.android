@@ -1,20 +1,18 @@
 <resources>
 
-    <style name="Base.Theme.MamsPaps" parent="Theme.Material3.DayNight.NoActionBar"/>
+    <style name="Base.Theme.MamsPaps" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="borderlessButtonStyle">@style/Widget.App.Button.TextButton</item>
+    </style>
 
     <!-- Base application theme. -->
     <style name="Theme.MamsPaps" parent="Base.Theme.MamsPaps">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">#fbfe46</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">#fbfe46</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.MamsPaps.Starting" parent="Theme.SplashScreen">
