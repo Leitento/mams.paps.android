@@ -4,4 +4,12 @@
     <string name="onboarding_first_screen">От родителей\nродителям!</string>
     <string name="onboarding_second_screen">Детям будет интересно!</string>
     <string name="onboarding_third_screen">Локации, которые подходят именно вашей семье.</string>
+    <string name="auth_title">Присоединяйся к MAMS.PAPS</string>
+    <string name="auth_description">Получай уведомления о выгодных предложениях и копи баллы на скидку</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="auth_forgot_password"><u>Забыл пароль</u></string>
+    <string name="auth_sign_up"><u>Регистрация</u></string>
+    <string name="auth_log_in">Войти</string>
+    <string name="auth_continue">Продолжить без регистрации</string>
 </resources>
