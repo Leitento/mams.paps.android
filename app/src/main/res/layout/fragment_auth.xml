@@ -136,8 +136,6 @@
         android:layout_marginHorizontal="@dimen/auth_screen_spacing"
         android:layout_marginBottom="@dimen/auth_screen_spacing"
         android:text="@string/auth_continue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
