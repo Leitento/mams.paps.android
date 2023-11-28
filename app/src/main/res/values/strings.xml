@@ -12,4 +12,8 @@
     <string name="auth_sign_up"><u>Регистрация</u></string>
     <string name="auth_log_in">Войти</string>
     <string name="auth_continue">Продолжить без регистрации</string>
+    <string name="navigator">Навигатор для родителей</string>
+    <string name="events">События и мероприятия</string>
+    <string name="services">Услуги и объявления</string>
+    <string name="useful">Полезное</string>
 </resources>
