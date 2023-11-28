@@ -3,4 +3,11 @@
     <dimen name="auth_screen_spacing">32dp</dimen>
     <dimen name="common_spacing">16dp</dimen>
     <dimen name="small_spacing">8dp</dimen>
+    <dimen name="main_screen_spacing">40dp</dimen>
+    <dimen name="main_screen_avatar_size">48dp</dimen>
+    <dimen name="main_screen_logo_size">256dp</dimen>
+    <dimen name="main_screen_logo_spacing">32dp</dimen>
+    <dimen name="item_card_corner_radius">20dp</dimen>
+    <dimen name="action_button_image_height">96dp</dimen>
+    <dimen name="action_button_height">192dp</dimen>
 </resources>
