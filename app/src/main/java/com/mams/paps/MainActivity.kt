@@ -9,6 +9,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.databinding.ActivityMainBinding
 import com.mams.paps.ui.OnboardingActivity
+import com.yandex.mapkit.MapKitFactory
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false
         }
+
+        MapKitFactory.initialize(this)
+
         val intent = Intent(this, OnboardingActivity::class.java)
         startActivity(intent)
     }
