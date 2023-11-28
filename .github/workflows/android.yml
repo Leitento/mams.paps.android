@@ -20,6 +20,12 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Decode secrets
+      env:
+        MAPKIT_API_KEY: ${{ secrets.MAPKIT_API_KEY }}
+      run: |
+        echo MAPKIT_API_KEY=$MAPKIT_API_KEY >> ./local.properties
+
     - name: Build with Gradle
       run: |
         chmod +x gradlew
