@@ -14,11 +14,6 @@ import com.mams.paps.R
 import com.mams.paps.databinding.ActivityMainBinding
 import com.mams.paps.ui.AdaptiveSpacingItemDecoration
 
-private const val ACTION_BUTTON_ID_NAVIGATION = "navigation"
-private const val ACTION_BUTTON_ID_EVENTS = "events"
-private const val ACTION_BUTTON_ID_SERVICES = "services"
-private const val ACTION_BUTTON_ID_USEFUL = "useful"
-
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val binding by viewBinding(ActivityMainBinding::bind)
@@ -109,5 +104,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
 
         adapter.submitList(actionButtonList)
+    }
+
+    companion object {
+        private const val ACTION_BUTTON_ID_NAVIGATION = "navigation"
+        private const val ACTION_BUTTON_ID_EVENTS = "events"
+        private const val ACTION_BUTTON_ID_SERVICES = "services"
+        private const val ACTION_BUTTON_ID_USEFUL = "useful"
     }
 }
