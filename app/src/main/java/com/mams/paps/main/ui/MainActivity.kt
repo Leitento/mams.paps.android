@@ -1,4 +1,4 @@
-package com.mams.paps.ui.main
+package com.mams.paps.main.ui
 
 import android.graphics.Color
 import android.os.Build
@@ -13,8 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
+import com.mams.paps.common.ui.AdaptiveSpacingItemDecoration
 import com.mams.paps.databinding.ActivityMainBinding
-import com.mams.paps.ui.AdaptiveSpacingItemDecoration
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 

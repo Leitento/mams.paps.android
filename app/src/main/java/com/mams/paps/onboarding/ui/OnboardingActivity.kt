@@ -1,4 +1,4 @@
-package com.mams.paps.ui
+package com.mams.paps.onboarding.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
 import com.mams.paps.databinding.ActivityOnboardingBinding
-import com.mams.paps.ui.main.MainActivity
+import com.mams.paps.main.ui.MainActivity
 
 class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
 

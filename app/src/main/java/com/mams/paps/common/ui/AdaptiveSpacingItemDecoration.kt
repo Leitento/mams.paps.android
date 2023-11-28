@@ -1,4 +1,4 @@
-package com.mams.paps.ui
+package com.mams.paps.common.ui
 
 import android.graphics.Rect
 import android.view.View

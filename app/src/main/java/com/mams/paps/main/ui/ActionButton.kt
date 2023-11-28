@@ -1,4 +1,4 @@
-package com.mams.paps.ui.main
+package com.mams.paps.main.ui
 
 data class ActionButton(
     val id: String,
