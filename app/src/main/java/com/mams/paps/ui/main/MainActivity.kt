@@ -3,12 +3,14 @@ package com.mams.paps.ui.main
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
 import com.mams.paps.databinding.ActivityMainBinding
@@ -55,10 +57,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             window.isNavigationBarContrastEnforced = false
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.guidelineTop) { view, windowInsets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.avatar) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            binding.guidelineTop.setGuidelineBegin(insets.top)
+            view.updateLayoutParams<MarginLayoutParams> {
+                topMargin = resources.getDimension(R.dimen.common_spacing).toInt() + insets.top
+            }
 
             windowInsets
         }
@@ -79,12 +83,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 ACTION_BUTTON_ID_NAVIGATION -> {
                     // TODO: Open navigation screen
                 }
+
                 ACTION_BUTTON_ID_EVENTS -> {
                     // TODO: Open events screen
                 }
+
                 ACTION_BUTTON_ID_SERVICES -> {
                     // TODO: Open services screen
                 }
+
                 ACTION_BUTTON_ID_USEFUL -> {
                     // TODO: Open useful screen
                 }
