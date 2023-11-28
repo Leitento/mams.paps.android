@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mams.paps.databinding.ItemMainActionBinding
 
-typealias ActionButtonClickListener = (id: String) -> Unit
-
 class ActionButtonAdapter(
-    private val buttonClickListener: ActionButtonClickListener
+    private val buttonClickListener: (id: String) -> Unit
 ) : ListAdapter<ActionButton, ActionViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActionViewHolder {
@@ -38,7 +36,7 @@ class ActionButtonAdapter(
 
 class ActionViewHolder(
     private val binding: ItemMainActionBinding,
-    private val buttonClickListener: ActionButtonClickListener
+    private val buttonClickListener: (id: String) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(actionButton: ActionButton) {
