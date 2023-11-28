@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="?cardViewStyle"
+    style="@style/Widget.App.ActionCardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:foreground="?selectableItemBackground"
-    app:cardCornerRadius="@dimen/item_card_corner_radius"
-    app:strokeWidth="2dp"
-    app:strokeColor="#a0b2c3">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -41,4 +37,4 @@
             tools:text="Навигатор\nдля родитилей" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>
