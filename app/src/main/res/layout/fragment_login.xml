@@ -59,18 +59,19 @@
         android:layout_marginHorizontal="@dimen/auth_screen_spacing"
         android:layout_marginTop="@dimen/common_spacing"
         android:hint="@string/email"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintBottom_toTopOf="@id/password_text_field"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description"
         app:layout_constraintWidth_max="@dimen/text_field_max_width"
-        app:startIconDrawable="@drawable/ic_email">
+        app:startIconDrawable="@drawable/ic_email_start_icon">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/small_spacing"
             android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -86,12 +87,13 @@
         app:layout_constraintStart_toStartOf="@id/email_text_field"
         app:layout_constraintTop_toBottomOf="@id/email_text_field"
         app:layout_constraintWidth_max="@dimen/text_field_max_width"
-        app:startIconDrawable="@drawable/ic_password">
+        app:startIconDrawable="@drawable/ic_password_start_icon">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/small_spacing"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
