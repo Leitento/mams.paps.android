@@ -1,7 +1,13 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.navigation.safeargs)
+}
+
+val properties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -16,6 +22,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String", "MAPKIT_API_KEY",
+            "\"${properties.getProperty("MAPKIT_API_KEY", "")}\""
+        )
     }
 
     buildTypes {
@@ -28,6 +39,7 @@ android {
         }
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
     kotlin {
@@ -43,6 +55,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.bundles.navigation)
     implementation(libs.viewbindingdelegate)
+    implementation(libs.yandex.mapkit)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
