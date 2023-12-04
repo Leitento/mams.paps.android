@@ -1,4 +1,4 @@
-package com.mams.paps.ui.main
+package com.mams.paps.main.ui
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
