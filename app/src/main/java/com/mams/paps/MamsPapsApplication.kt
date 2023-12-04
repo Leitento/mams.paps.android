@@ -1,9 +1,14 @@
 package com.mams.paps
 
 import android.app.Application
+import com.mams.paps.auth.data.local.AuthManager
 import com.yandex.mapkit.MapKitFactory
 
 class MamsPapsApplication : Application() {
+
+    val authManager by lazy {
+        AuthManager()
+    }
 
     override fun onCreate() {
         super.onCreate()

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_yellow"
-    android:clipToPadding="false">
+    android:background="@color/orange">
 
     <View
         android:id="@+id/top_background"
@@ -49,6 +48,7 @@
         android:layout_marginHorizontal="@dimen/auth_screen_spacing"
         android:layout_marginTop="@dimen/common_spacing"
         android:text="@string/auth_description"
+        android:textColor="@color/gray"
         app:layout_constraintBottom_toTopOf="@id/email_text_field"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/auth_screen_spacing"
         android:layout_marginTop="@dimen/common_spacing"
-        android:hint="@string/email"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toTopOf="@id/password_text_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -72,7 +72,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/small_spacing"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress"
+            android:textColorHint="@color/gray" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +84,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_spacing"
-        android:hint="@string/password"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toTopOf="@id/button_forgot_password"
         app:layout_constraintEnd_toEndOf="@id/email_text_field"
         app:layout_constraintStart_toStartOf="@id/email_text_field"
@@ -94,7 +97,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/small_spacing"
-            android:inputType="textPassword" />
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/gray" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

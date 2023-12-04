@@ -16,4 +16,7 @@
     <string name="events">События и мероприятия</string>
     <string name="services">Услуги и объявления</string>
     <string name="useful">Полезное</string>
+    <string name="error_invalid_email">Пожалуйста, введите верный адрес электронной почты.</string>
+    <string name="error_empty_password">Пожалуйста, введите пароль.</string>
+    <string name="error_password_too_short">Пароль должен содержать минимум %1$d символов.</string>
 </resources>
