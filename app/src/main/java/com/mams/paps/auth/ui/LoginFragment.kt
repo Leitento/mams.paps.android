@@ -2,6 +2,7 @@ package com.mams.paps.auth.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -37,6 +38,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val email = binding.emailEditText.text.toString()
                 val password = binding.passwordEditText.text.toString()
                 viewModel.logIn(email, password)
+            }
+            passwordEditText.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    viewModel.logIn(
+                        binding.emailEditText.text.toString(),
+                        binding.passwordEditText.text.toString()
+                    )
+                }
+                false
             }
         }
 
