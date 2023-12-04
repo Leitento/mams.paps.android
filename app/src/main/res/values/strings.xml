@@ -6,10 +6,10 @@
     <string name="onboarding_third_screen">Локации, которые подходят именно вашей семье.</string>
     <string name="auth_title">Присоединяйся к MAMS.PAPS</string>
     <string name="auth_description">Получай уведомления о выгодных предложениях и копи баллы на скидку</string>
-    <string name="email">Email</string>
+    <string name="email">Электронная почта</string>
     <string name="password">Пароль</string>
-    <string name="auth_forgot_password"><u>Забыл пароль</u></string>
-    <string name="auth_sign_up"><u>Регистрация</u></string>
+    <string name="auth_forgot_password">Забыли пароль?</string>
+    <string name="auth_sign_up">Регистрация</string>
     <string name="auth_log_in">Войти</string>
     <string name="auth_continue">Продолжить без регистрации</string>
     <string name="navigator">Навигатор для родителей</string>
@@ -21,6 +21,9 @@
     <string name="menu_profile">Профиль</string>
     <string name="menu_home">Главная</string>
     <string name="useful">Полезное</string>
+    <string name="error_invalid_email">Пожалуйста, введите верный адрес электронной почты.</string>
+    <string name="error_empty_password">Пожалуйста, введите пароль.</string>
+    <string name="error_password_too_short">Пароль должен содержать минимум %1$d символов.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

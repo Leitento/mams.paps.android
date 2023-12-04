@@ -1,25 +1,36 @@
 package com.mams.paps.ui.main
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
 import com.mams.paps.databinding.ActivityMainBinding
 import com.mams.paps.ui.AdaptiveSpacingItemDecoration
+import com.mams.paps.ui.OnboardingActivity
 import com.yandex.mapkit.MapKitFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val binding by viewBinding(ActivityMainBinding::bind)
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
+
+    private var shouldKeepSplashScreen = true
 
     private val actionButtonList = listOf(
         ActionButton(
@@ -45,9 +56,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-        super.onCreate(savedInstanceState)
-
+        val splashScreen = installSplashScreen()
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.light(
                 Color.TRANSPARENT,
@@ -57,28 +66,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false
         }
+        super.onCreate(savedInstanceState)
+
+        setWindowInsetsListeners()
 
         MapKitFactory.initialize(this)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.avatar) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-
-            view.updateLayoutParams<MarginLayoutParams> {
-                topMargin = resources.getDimension(R.dimen.common_spacing).toInt() + insets.top
-            }
-
-            windowInsets
-        }
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.actionButtonList) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-
-            view.setPadding(
-                view.paddingLeft, view.paddingTop,
-                view.paddingRight, view.paddingTop + insets.bottom
-            )
-
-            windowInsets
+        splashScreen.setKeepOnScreenCondition {
+            shouldKeepSplashScreen
         }
 
         val adapter = ActionButtonAdapter { actionId ->
@@ -114,6 +109,46 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
 
         adapter.submitList(actionButtonList)
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.Main.immediate) {
+                viewModel.uiEvent.collect {
+                    when (it) {
+                        UiEvent.NavigateToHome -> {
+                            shouldKeepSplashScreen = false
+                        }
+
+                        UiEvent.NavigateToOnboarding -> {
+                            val intent = Intent(this@MainActivity, OnboardingActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setWindowInsetsListeners() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.avatar) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            view.updateLayoutParams<MarginLayoutParams> {
+                topMargin = resources.getDimension(R.dimen.common_spacing).toInt() + insets.top
+            }
+
+            windowInsets
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.actionButtonList) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            view.updatePadding(
+                bottom = view.paddingTop + insets.bottom
+            )
+
+            windowInsets
+        }
     }
 
     companion object {

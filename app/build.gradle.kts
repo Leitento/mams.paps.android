@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation.safeargs)
 }
 
 val properties = Properties().apply {
@@ -47,15 +48,12 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-
     implementation(libs.core.ktx)
     implementation(libs.core.splashscreen)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+    implementation(libs.bundles.navigation)
     implementation(libs.viewbindingdelegate)
     implementation(libs.yandex.mapkit)
 
