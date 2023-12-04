@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
+import com.mams.paps.auth.ui.AuthActivity
 import com.mams.paps.databinding.ActivityOnboardingBinding
 import com.mams.paps.main.ui.MainActivity
 
@@ -40,7 +41,7 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
                 currentStageIndex++
                 setupOnboardingStage(currentStageIndex)
             } else {
-                moveToMain()
+                moveToAuth()
             }
         }
         setupOnboardingStage(currentStageIndex)
@@ -54,8 +55,8 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
         binding.textScreen.text = getString(stage.textId)
     }
 
-    fun moveToMain() {
-        val intent = Intent(this, MainActivity::class.java)
+    fun moveToAuth() {
+        val intent = Intent(this, AuthActivity::class.java)
         startActivity(intent)
         finish()
     }
