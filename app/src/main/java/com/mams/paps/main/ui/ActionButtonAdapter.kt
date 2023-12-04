@@ -1,4 +1,4 @@
-package com.mams.paps.ui.main
+package com.mams.paps.main.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

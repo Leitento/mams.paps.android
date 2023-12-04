@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MamsPaps.Starting"
         tools:targetApi="34">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".main.ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MamsPaps.Starting">
             <intent-filter>
@@ -30,7 +30,7 @@
             android:name=".auth.ui.AuthActivity"
             android:theme="@style/Theme.MamsPaps" />
         <activity
-            android:name=".ui.OnboardingActivity"
+            android:name=".onboarding.ui.OnboardingActivity"
             android:theme="@style/Theme.MamsPaps" />
     </application>
 </manifest>
