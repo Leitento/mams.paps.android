@@ -42,6 +42,13 @@ android {
         buildConfig = true
         viewBinding = true
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     kotlin {
         jvmToolchain(17)
     }
@@ -56,6 +63,8 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.viewbindingdelegate)
     implementation(libs.yandex.mapkit)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
 
 
     testImplementation(libs.junit)

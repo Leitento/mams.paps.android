@@ -35,6 +35,7 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         binding.buttonToNextScreen.setOnClickListener {
             if (currentStageIndex < onboardingStages.size - 1) {
                 currentStageIndex++

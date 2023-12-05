@@ -20,7 +20,6 @@ import com.mams.paps.R
 import com.mams.paps.databinding.ActivityMainBinding
 import com.mams.paps.ui.AdaptiveSpacingItemDecoration
 import com.mams.paps.ui.OnboardingActivity
-import com.yandex.mapkit.MapKitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         setWindowInsetsListeners()
 
-        MapKitFactory.initialize(this)
+//        MapKitFactory.initialize(this)
 
         splashScreen.setKeepOnScreenCondition {
             shouldKeepSplashScreen
@@ -79,7 +78,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val adapter = ActionButtonAdapter { actionId ->
             when (actionId) {
                 ACTION_BUTTON_ID_NAVIGATION -> {
-                    // TODO: Open navigation screen
+                    val intent = Intent(this, MapActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
 
                 ACTION_BUTTON_ID_EVENTS -> {
