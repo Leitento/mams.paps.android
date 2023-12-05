@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.mams.paps.R
 
 class HomeFragment : Fragment() {
+    // в этом фрагменте по идее должен быть главный экран (меин активити)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

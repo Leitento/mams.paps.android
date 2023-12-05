@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val adapter = ActionButtonAdapter { actionId ->
             when (actionId) {
                 ACTION_BUTTON_ID_NAVIGATION -> {
-                    val intent = Intent(this, MapActivity::class.java)
+                    val intent = Intent(this, NavigationActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

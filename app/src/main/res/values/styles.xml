@@ -44,6 +44,14 @@
         <item name="android:foreground">?selectableItemBackground</item>
     </style>
 
-
-
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="elevation">0dp</item>
+        <item name="itemActiveIndicatorStyle">@null</item>
+        <item name="itemIconTint">@color/selector_nav_bar_item</item>
+        <item name="itemTextColor">@color/selector_nav_bar_item</item>
+        <item name="itemTextAppearanceActiveBoldEnabled">false</item>
+        <item name="itemPaddingBottom">24dp</item>
+        <item name="itemPaddingTop">16dp</item>
+        <item name="itemRippleColor">@color/selector_nav_bar_ripple</item>
+    </style>
 </resources>
