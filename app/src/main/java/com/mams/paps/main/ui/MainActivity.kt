@@ -70,8 +70,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         setWindowInsetsListeners()
 
-//        MapKitFactory.initialize(this)
-
         splashScreen.setKeepOnScreenCondition {
             shouldKeepSplashScreen
         }
