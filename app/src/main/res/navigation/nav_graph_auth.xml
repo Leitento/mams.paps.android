@@ -13,7 +13,7 @@
 
     <activity
         android:id="@+id/main_activity"
-        android:name="com.mams.paps.ui.main.MainActivity"
+        android:name="com.mams.paps.main.ui.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 
