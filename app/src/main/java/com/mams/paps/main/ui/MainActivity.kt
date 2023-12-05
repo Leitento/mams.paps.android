@@ -17,9 +17,10 @@ import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
+import com.mams.paps.common.ui.AdaptiveSpacingItemDecoration
 import com.mams.paps.databinding.ActivityMainBinding
-import com.mams.paps.ui.AdaptiveSpacingItemDecoration
-import com.mams.paps.ui.OnboardingActivity
+import com.mams.paps.onboarding.ui.OnboardingActivity
+import com.yandex.mapkit.MapKitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
