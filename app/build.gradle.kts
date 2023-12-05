@@ -56,6 +56,9 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.viewbindingdelegate)
     implementation(libs.yandex.mapkit)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

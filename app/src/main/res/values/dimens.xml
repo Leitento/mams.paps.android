@@ -11,4 +11,10 @@
     <dimen name="action_button_image_height">96dp</dimen>
     <dimen name="action_button_height">192dp</dimen>
     <dimen name="text_field_max_width">384dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <item name="ripple_opacity" type="dimen" format="float">0.12</item>
+    <item name="ripple_hovered_opacity" type="dimen" format="float">0.08</item>
+
 </resources>

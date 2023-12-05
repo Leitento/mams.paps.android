@@ -32,5 +32,9 @@
         <activity
             android:name=".onboarding.ui.OnboardingActivity"
             android:theme="@style/Theme.MamsPaps" />
+        <activity
+            android:name=".ui.main.NavigationActivity"
+            android:theme="@style/Theme.MamsPaps" />
     </application>
+
 </manifest>

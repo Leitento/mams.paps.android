@@ -7,7 +7,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
 import com.mams.paps.auth.ui.AuthActivity
 import com.mams.paps.databinding.ActivityOnboardingBinding
-import com.mams.paps.main.ui.MainActivity
 
 class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
 
@@ -35,6 +34,7 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding.buttonToNextScreen.setOnClickListener {
             if (currentStageIndex < onboardingStages.size - 1) {
