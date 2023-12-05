@@ -12,14 +12,13 @@
         <item name="colorSecondary">@color/yellow</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="colorSurface">@color/white</item>
-        <item name="colorSurfaceContainer">@color/white</item>
-        <item name="android:colorBackground">@color/white</item>
         <!--    Цвет лейбла названий иконок ниж.нав. и шапки-->
         <item name="colorOnSurface">@color/red</item>
         <!--    Цвет иконки нажней навигации -->
         <item name="colorOnSecondaryContainer">@color/red</item>
     </style>
 
+<!--    Тестовая тема для нижней навигации-->
     <style name="AppTheme" parent="Theme.AppCompat">
         <item name="colorAccent">@color/red</item>
     </style>
