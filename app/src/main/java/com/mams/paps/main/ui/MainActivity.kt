@@ -32,10 +32,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private var shouldKeepSplashScreen = true
 
-    override fun onRestart() {
-        super.onRestart()
-    }
-
     private val actionButtonList = listOf(
         ActionButton(
             ACTION_BUTTON_ID_NAVIGATION,
