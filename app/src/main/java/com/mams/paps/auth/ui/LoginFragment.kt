@@ -105,7 +105,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun navigateToMain() {
-        val action = NavGraphAuthDirections.actionGlobalMainActivity()
+        val action = NavGraphAuthDirections.actionOpenMainScreen()
         findNavController().navigate(action)
         requireActivity().finish()
     }

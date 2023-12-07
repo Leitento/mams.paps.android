@@ -18,7 +18,7 @@
         tools:layout="@layout/activity_main" />
 
     <action
-        android:id="@+id/action_global_main_activity"
+        android:id="@+id/action_openMainScreen"
         app:destination="@id/main_activity"
         app:launchSingleTop="true" />
 </navigation>

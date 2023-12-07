@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/main_screen_spacing"
         android:drawablePadding="@dimen/small_spacing"
-        app:drawableStartCompat="@drawable/ic_location"
+        app:drawableStartCompat="@drawable/ic_geo"
         app:layout_constraintBottom_toBottomOf="@+id/avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/avatar"
