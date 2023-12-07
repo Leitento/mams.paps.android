@@ -20,10 +20,6 @@
         <item name="colorOnSecondaryContainer">@color/red</item>
     </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat">
-        <item name="colorAccent">@color/red</item>
-    </style>
-
     <style name="Theme.MamsPaps.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
         <item name="postSplashScreenTheme">@style/Theme.MamsPaps</item>
