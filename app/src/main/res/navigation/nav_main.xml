@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@+id/navigation_map">
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.mams.paps.navigation.ui.map.MapFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/navigation_add"
+        android:name="com.mams.paps.ui.bottom_bar.AddFragment"
+        android:label="@string/menu_add"
+        tools:layout="@layout/fragment_add" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.mams.paps.ui.bottom_bar.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <activity
+        android:id="@+id/main_activity"
+        android:name="com.mams.paps.main.ui.MainActivity"
+        tools:layout="@layout/activity_main" />
+
+    <action
+        android:id="@+id/action_openMainScreen"
+        app:destination="@id/main_activity"
+        app:launchSingleTop="true" />
+</navigation>
