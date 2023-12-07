@@ -19,8 +19,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
 import com.mams.paps.common.ui.AdaptiveSpacingItemDecoration
 import com.mams.paps.databinding.ActivityMainBinding
+import com.mams.paps.navigation.ui.NavigationActivity
 import com.mams.paps.onboarding.ui.OnboardingActivity
-import com.mams.paps.ui.main.NavigationActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
 
     private var shouldKeepSplashScreen = true
+
+    override fun onRestart() {
+        super.onRestart()
+    }
 
     private val actionButtonList = listOf(
         ActionButton(
