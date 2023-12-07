@@ -1,6 +1,7 @@
 [versions]
 agp = "8.2.0"
 kotlin = "1.9.10"
+coroutines = "1.7.3"
 core-ktx = "1.12.0"
 core-splashscreen = "1.0.1"
 appcompat = "1.6.1"
@@ -9,6 +10,7 @@ constraintlayout = "2.1.4"
 navigation = "2.7.5"
 viewbindingdelegate = "1.5.9"
 yandex-mapkit="4.4.0-full"
+play-services = "21.0.1"
 # Tests
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -18,6 +20,8 @@ lifecycle-viewmodel-ktx = "2.6.1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "core-splashscreen" }
@@ -26,6 +30,7 @@ navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-kt
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 viewbindingdelegate = { module = "com.github.kirich1409:viewbindingpropertydelegate-noreflection", version.ref = "viewbindingdelegate" }
 yandex-mapkit = { module = "com.yandex.android:maps.mobile", version.ref = "yandex-mapkit" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-services" }
 # Tests
 junit = { module = "junit:junit", version.ref = "junit" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }

@@ -67,6 +67,20 @@
                 app:layout_constraintBottom_toTopOf="@id/button_bookmark"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/my_location_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:hideAnimationBehavior="outward"
+                app:indicatorSize="@dimen/map_button_size"
+                app:layout_constraintBottom_toBottomOf="@id/button_my_location"
+                app:layout_constraintEnd_toEndOf="@id/button_my_location"
+                app:layout_constraintStart_toStartOf="@id/button_my_location"
+                app:layout_constraintTop_toTopOf="@id/button_my_location"
+                app:showAnimationBehavior="inward" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_bookmark"
                 style="@style/Widget.App.MapIconButton"

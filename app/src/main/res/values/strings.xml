@@ -25,4 +25,6 @@
     <string name="error_empty_password">Пожалуйста, введите пароль.</string>
     <string name="error_password_too_short">Пароль должен содержать минимум %1$d символов.</string>
     <string name="hint_map_search">Введите запрос</string>
+    <string name="location_permission_denied">Не удалось определить ваше местоположение. Пожалуйста, разрешите доступ к местоположению в настройках приложения.</string>
+    <string name="error_my_location">Не удалось определить ваше местопожение.</string>
 </resources>
