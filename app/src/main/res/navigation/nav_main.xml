@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_add"
-        android:name="com.mams.paps.ui.bottom_bar.AddFragment"
+        android:name="com.mams.paps.navigation.ui.AddFragment"
         android:label="@string/menu_add"
         tools:layout="@layout/fragment_add" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.mams.paps.ui.bottom_bar.ProfileFragment"
+        android:name="com.mams.paps.navigation.ui.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 

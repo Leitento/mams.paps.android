@@ -1,10 +1,10 @@
-package com.mams.paps.ui.bottom_bar
+package com.mams.paps.navigation.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.mams.paps.R
 
 class HomeFragment : Fragment() {
