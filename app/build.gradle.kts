@@ -45,17 +45,25 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+    kotlinOptions {
+        freeCompilerArgs += listOf(
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        )
+    }
 }
 
 dependencies {
     implementation(libs.core.ktx)
     implementation(libs.core.splashscreen)
+    implementation(libs.coroutines)
+    implementation(libs.coroutines.play.services)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation(libs.bundles.navigation)
     implementation(libs.viewbindingdelegate)
     implementation(libs.yandex.mapkit)
+    implementation(libs.play.services.location)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
 
