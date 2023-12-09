@@ -122,9 +122,11 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     override fun onStart() {
         super.onStart()
         MapKitFactory.getInstance().onStart()
+        binding.mapView.onStart()
     }
 
     override fun onStop() {
+        binding.mapView.onStop()
         MapKitFactory.getInstance().onStop()
         super.onStop()
     }
