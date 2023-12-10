@@ -1,14 +1,22 @@
 package com.mams.paps.main.ui
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
+import android.view.animation.DecelerateInterpolator
+import android.widget.ImageView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -56,22 +64,61 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
-        enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.light(
-                Color.TRANSPARENT,
-                Color.TRANSPARENT
-            )
-        )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            window.isNavigationBarContrastEnforced = false
-        }
+        val splashScreen = installSplashScreen().takeIf { savedInstanceState == null }
+        setupEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         setWindowInsetsListeners()
 
-        splashScreen.setKeepOnScreenCondition {
-            shouldKeepSplashScreen
+        splashScreen?.apply {
+            setKeepOnScreenCondition {
+                shouldKeepSplashScreen
+            }
+            setOnExitAnimationListener { provider ->
+                setupEdgeToEdge()
+
+                val iconView = provider.iconView as ImageView
+                iconView.setImageDrawable(binding.logo.drawable)
+
+                val backgroundColor = (provider.view.background as ColorDrawable).color
+                val bgFadeAnim = ObjectAnimator.ofArgb(
+                    provider.view,
+                    "backgroundColor",
+                    backgroundColor, 0x00FFFFFF
+                ).apply {
+                    duration = 250L
+                }
+
+                val iconMoveAnim = ObjectAnimator.ofPropertyValuesHolder(
+                    iconView,
+                    PropertyValuesHolder.ofFloat(
+                        View.Y,
+                        provider.iconView.y,
+                        binding.logo.y + resources.getDimension(R.dimen.main_screen_logo_spacing)
+                    ),
+                    PropertyValuesHolder.ofFloat(
+                        View.SCALE_Y,
+                        provider.iconView.height.toFloat() / binding.logo.height,
+                        1f
+                    ),
+                    PropertyValuesHolder.ofFloat(
+                        View.SCALE_X,
+                        provider.iconView.height.toFloat() / binding.logo.height,
+                        1f
+                    )
+                ).apply {
+                    duration = 250L
+                }
+
+                AnimatorSet().apply {
+                    interpolator = DecelerateInterpolator()
+
+                    play(bgFadeAnim).after(iconMoveAnim)
+                    doOnEnd {
+                        provider.remove()
+                    }
+                }.start()
+            }
         }
 
         val adapter = ActionButtonAdapter { actionId ->
@@ -126,6 +173,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                     }
                 }
             }
+        }
+    }
+
+    private fun setupEdgeToEdge() {
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                Color.TRANSPARENT,
+                Color.TRANSPARENT
+            )
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isNavigationBarContrastEnforced = false
         }
     }
 
