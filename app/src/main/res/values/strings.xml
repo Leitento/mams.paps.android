@@ -27,4 +27,10 @@
     <string name="hint_map_search">Введите запрос</string>
     <string name="location_permission_denied">Не удалось определить ваше местоположение. Пожалуйста, разрешите доступ к местоположению в настройках приложения.</string>
     <string name="error_my_location">Не удалось определить ваше местопожение.</string>
+    <string name="category_playground">Игровые площадки</string>
+    <string name="category_food">Кафе</string>
+    <string name="category_development">Развития\nКурсы</string>
+    <string name="category_education">Детсады\nШколы</string>
+    <string name="category_shop">Магазины</string>
+    <string name="category_health">Аптеки\nПоликлиники</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.App.ActionCardView"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/action_button_height"
+    android:layout_height="wrap_content"
     app:strokeColor="@color/blue"
     app:strokeWidth="3dp">
 
@@ -19,6 +19,7 @@
             android:layout_marginHorizontal="@dimen/small_spacing"
             android:layout_marginTop="@dimen/common_spacing"
             android:importantForAccessibility="no"
+            app:layout_constraintBottom_toTopOf="@id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
