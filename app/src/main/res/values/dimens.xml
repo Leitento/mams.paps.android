@@ -8,12 +8,15 @@
     <dimen name="main_screen_logo_size">256dp</dimen>
     <dimen name="main_screen_logo_spacing">32dp</dimen>
     <dimen name="action_card_corner_radius">20dp</dimen>
-    <dimen name="action_button_image_height">96dp</dimen>
-    <dimen name="action_button_height">192dp</dimen>
+    <dimen name="action_button_image_height">80dp</dimen>
+    <dimen name="main_action_button_height">192dp</dimen>
     <dimen name="text_field_max_width">384dp</dimen>
     <dimen name="ripple_opacity" format="float">0.12</dimen>
     <dimen name="ripple_hovered_opacity" format="float">0.08</dimen>
     <dimen name="bottom_sheet_peek_height">32dp</dimen>
     <dimen name="map_button_size">56dp</dimen>
     <dimen name="map_button_elevation">4dp</dimen>
+    <dimen name="categories_vertical_spacing">30dp</dimen>
+    <dimen name="categories_horizontal_spacing">20dp</dimen>
+    <dimen name="categories_action_button_size">160dp</dimen>
 </resources>

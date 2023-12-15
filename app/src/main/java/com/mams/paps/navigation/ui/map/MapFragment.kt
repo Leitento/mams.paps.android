@@ -6,22 +6,28 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.navGraphViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.mams.paps.R
 import com.mams.paps.databinding.FragmentMapBinding
+import com.mams.paps.navigation.model.MapCategory
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
@@ -34,12 +40,15 @@ import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.CameraUpdateReason
 import com.yandex.mapkit.map.Map
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.CancellationException
 
 class MapFragment : Fragment(R.layout.fragment_map) {
 
+    private val viewModel: MapViewModel by navGraphViewModels(R.id.navigation_map)
     private val binding by viewBinding(FragmentMapBinding::bind)
     private var map: Map? = null
 
@@ -72,17 +81,15 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.overlay) { overlay, windowInsets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.searchBar) { searchBar, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            overlay.updatePadding(
-                top = insets.top
-            )
+            searchBar.updateLayoutParams<MarginLayoutParams> {
+                topMargin = insets.top + resources.getDimensionPixelOffset(R.dimen.common_spacing)
+            }
 
             windowInsets
         }
-
-        setBottomSheetFragment(CategoriesFragment())
 
         with(binding) {
             map = mapView.mapWindow.map.apply {
@@ -108,6 +115,34 @@ class MapFragment : Fragment(R.layout.fragment_map) {
             }
             buttonMyLocation.setOnClickListener {
                 moveCameraToMe(true)
+            }
+        }
+
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
+        setBottomSheetFragment(MapCategoriesFragment())
+
+        childFragmentManager.setFragmentResultListener(
+            MapCategoriesFragment.REQUEST_KEY_CATEGORY,
+            viewLifecycleOwner
+        ) { _, result ->
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+            val categoryName = result.getString(MapCategoriesFragment.RESULT_KEY_CATEGORY_NAME)
+            val category = categoryName?.let {
+                runCatching {
+                    MapCategory.valueOf(categoryName)
+                }.getOrNull()
+            } ?: MapCategory.NONE
+
+            // TODO: Open the filter screen
+            viewModel.setCategory(category)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.selectedCategory.onEach {
+                    // TODO: Show places from selected category on the map
+                }.launchIn(this)
             }
         }
     }

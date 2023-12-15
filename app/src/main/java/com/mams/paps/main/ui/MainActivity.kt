@@ -25,6 +25,8 @@ import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
+import com.mams.paps.common.ui.ActionButton
+import com.mams.paps.common.ui.ActionButtonAdapter
 import com.mams.paps.common.ui.AdaptiveSpacingItemDecoration
 import com.mams.paps.databinding.ActivityMainBinding
 import com.mams.paps.navigation.ui.NavigationActivity
@@ -121,7 +123,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
         }
 
-        val adapter = ActionButtonAdapter { actionId ->
+        val itemHeight = resources.getDimensionPixelSize(R.dimen.main_action_button_height)
+        val adapter = ActionButtonAdapter(itemHeight) { actionId ->
             when (actionId) {
                 ACTION_BUTTON_ID_NAVIGATION -> {
                     val intent = Intent(this, NavigationActivity::class.java)
