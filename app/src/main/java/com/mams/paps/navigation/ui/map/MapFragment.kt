@@ -132,8 +132,9 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                 runCatching {
                     MapCategory.valueOf(categoryName)
                 }.getOrNull()
-            }
+            } ?: MapCategory.NONE
 
+            // TODO: Open the filter screen
             viewModel.setCategory(category)
         }
 
