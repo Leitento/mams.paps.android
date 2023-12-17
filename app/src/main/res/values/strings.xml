@@ -33,4 +33,6 @@
     <string name="category_education">Детсады\nШколы</string>
     <string name="category_shop">Магазины</string>
     <string name="category_health">Аптеки\nПоликлиники</string>
+    <string name="error_suggest">Во время поиска произошла ошибка.</string>
+    <string name="error_connection">Не удалось совершить поиск. Проверьте ваше соединение с интернетом.</string>
 </resources>

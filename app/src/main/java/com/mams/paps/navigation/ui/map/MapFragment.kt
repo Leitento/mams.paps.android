@@ -24,12 +24,15 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.search.SearchView
 import com.google.android.material.snackbar.Snackbar
 import com.mams.paps.R
+import com.mams.paps.common.ui.utils.textChangesFlow
 import com.mams.paps.databinding.FragmentMapBinding
 import com.mams.paps.navigation.model.MapCategory
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
+import com.yandex.mapkit.geometry.BoundingBox
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.logo.Alignment
 import com.yandex.mapkit.logo.HorizontalAlignment
@@ -39,7 +42,16 @@ import com.yandex.mapkit.map.CameraListener
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.CameraUpdateReason
 import com.yandex.mapkit.map.Map
+import com.yandex.mapkit.search.SearchFactory
+import com.yandex.mapkit.search.SearchManagerType
+import com.yandex.mapkit.search.SuggestItem
+import com.yandex.mapkit.search.SuggestOptions
+import com.yandex.mapkit.search.SuggestSession
+import com.yandex.mapkit.search.SuggestType
+import com.yandex.runtime.Error
+import com.yandex.runtime.network.NetworkError
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -55,10 +67,46 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var moveCameraJob: Job? = null
+    private var geoSuggestAdapter: GeoSuggestAdapter? = null
+
+    private val searchManager = SearchFactory.getInstance()
+        .createSearchManager(SearchManagerType.ONLINE)
+    private val suggestOptions = SuggestOptions().apply {
+        suggestTypes = SuggestType.GEO.value or SuggestType.BIZ.value
+        suggestWords = false
+    }
+    private val suggestSession = searchManager.createSuggestSession()
 
     private val cameraListener = CameraListener { _, cameraPosition, cameraUpdateReason, finished ->
         if (cameraUpdateReason == CameraUpdateReason.GESTURES) {
             cancelMoveCameraToMe()
+        }
+    }
+
+    private val suggestListener = object : SuggestSession.SuggestListener {
+        override fun onResponse(items: MutableList<SuggestItem>) {
+            geoSuggestAdapter?.submitList(items) {
+                binding.suggestList.scrollToPosition(0)
+            }
+        }
+
+        override fun onError(error: Error) {
+            if (error is NetworkError) {
+                Snackbar.make(
+                    requireView(), R.string.error_connection, Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    private val suggestClickListener: GeoSuggestClickListener = { suggestItem ->
+        with(binding) {
+            if (suggestItem.action == SuggestItem.Action.SUBSTITUTE) {
+                searchView.editText.setText(suggestItem.displayText)
+            } else {
+                moveCamera(target = suggestItem.center)
+                searchView.hide()
+            }
         }
     }
 
@@ -107,6 +155,20 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                 moveCameraToMe()
             }
 
+            searchView.editText.setOnEditorActionListener { _, _, _ ->
+                searchView.hide()
+                false
+            }
+
+            searchView.addTransitionListener { _, _, newState ->
+                if (newState == SearchView.TransitionState.HIDDEN) {
+                    suggestSession.reset()
+                }
+            }
+
+            geoSuggestAdapter = GeoSuggestAdapter(suggestClickListener)
+            suggestList.adapter = geoSuggestAdapter
+
             buttonZoomIn.setOnClickListener {
                 changeZoom(true)
             }
@@ -143,6 +205,13 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                 viewModel.selectedCategory.onEach {
                     // TODO: Show places from selected category on the map
                 }.launchIn(this)
+
+                binding.searchView.editText.textChangesFlow()
+                    .debounce(SUGGEST_DEBOUNCE_TIMEOUT)
+                    .onEach {
+                        suggest(it.toString())
+                    }
+                    .launchIn(this)
             }
         }
     }
@@ -150,6 +219,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     override fun onDestroyView() {
         map?.removeCameraListener(cameraListener)
         map = null
+        geoSuggestAdapter = null
 
         super.onDestroyView()
     }
@@ -267,6 +337,24 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         }
     }
 
+    private fun suggest(text: String) = viewLifecycleOwner.lifecycleScope.launch {
+        val map = map ?: return@launch
+
+        runCatching {
+            getCurrentLocation()?.let {
+                suggestOptions.userPosition = Point(it.latitude, it.longitude)
+            }
+            suggestSession.suggest(
+                text,
+                BoundingBox(map.visibleRegion.bottomLeft, map.visibleRegion.topRight),
+                suggestOptions,
+                suggestListener,
+            )
+        }.onFailure {
+            Snackbar.make(requireView(), R.string.error_suggest, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
     private fun requestLocationPermissions() {
         locationPermissionRequest.launch(
             arrayOf(
@@ -293,5 +381,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         private const val ZOOM_STEP = 1f
         private val ZOOM_ANIMATION = Animation(Animation.Type.LINEAR, 0.25f)
         private val MOVE_ANIMATION = Animation(Animation.Type.SMOOTH, 0.5f)
+
+        private const val SUGGEST_DEBOUNCE_TIMEOUT = 300L
     }
 }

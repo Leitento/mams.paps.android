@@ -10,7 +10,7 @@
     <style name="Theme.MamsPaps" parent="Base.Theme.MamsPaps">
         <item name="colorPrimary">@color/blue</item>
         <item name="colorOnPrimary">@color/black</item>
-        <item name="colorSecondary">@color/yellow</item>
+        <item name="colorSecondary">@color/orange</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorSurfaceContainer">@color/white</item>
