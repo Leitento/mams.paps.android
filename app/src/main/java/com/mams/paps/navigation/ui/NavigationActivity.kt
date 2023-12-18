@@ -27,6 +27,8 @@ class NavigationActivity : AppCompatActivity(R.layout.activity_navigation) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false
         }
+
+        MapKitFactory.initialize(this)
         super.onCreate(savedInstanceState)
 
         with(binding) {
@@ -42,7 +44,5 @@ class NavigationActivity : AppCompatActivity(R.layout.activity_navigation) {
                 }
             }
         }
-
-        MapKitFactory.initialize(this)
     }
 }

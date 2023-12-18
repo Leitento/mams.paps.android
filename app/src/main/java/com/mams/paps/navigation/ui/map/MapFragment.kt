@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
@@ -24,12 +25,14 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.search.SearchView
 import com.google.android.material.snackbar.Snackbar
 import com.mams.paps.R
 import com.mams.paps.databinding.FragmentMapBinding
 import com.mams.paps.navigation.model.MapCategory
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
+import com.yandex.mapkit.geometry.BoundingBox
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.logo.Alignment
 import com.yandex.mapkit.logo.HorizontalAlignment
@@ -39,13 +42,22 @@ import com.yandex.mapkit.map.CameraListener
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.CameraUpdateReason
 import com.yandex.mapkit.map.Map
+import com.yandex.mapkit.search.SearchFactory
+import com.yandex.mapkit.search.SearchManagerType
+import com.yandex.mapkit.search.SuggestItem
+import com.yandex.mapkit.search.SuggestOptions
+import com.yandex.mapkit.search.SuggestSession
+import com.yandex.mapkit.search.SuggestType
+import com.yandex.runtime.Error
+import com.yandex.runtime.network.NetworkError
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.CancellationException
 
+@FlowPreview
 class MapFragment : Fragment(R.layout.fragment_map) {
 
     private val viewModel: MapViewModel by navGraphViewModels(R.id.navigation_map)
@@ -55,10 +67,46 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var moveCameraJob: Job? = null
+    private var geoSuggestAdapter: GeoSuggestAdapter? = null
+
+    private val searchManager = SearchFactory.getInstance()
+        .createSearchManager(SearchManagerType.ONLINE)
+    private val suggestOptions = SuggestOptions().apply {
+        suggestTypes = SuggestType.GEO.value or SuggestType.BIZ.value
+        suggestWords = false
+    }
+    private val suggestSession = searchManager.createSuggestSession()
 
     private val cameraListener = CameraListener { _, cameraPosition, cameraUpdateReason, finished ->
         if (cameraUpdateReason == CameraUpdateReason.GESTURES) {
             cancelMoveCameraToMe()
+        }
+    }
+
+    private val suggestListener = object : SuggestSession.SuggestListener {
+        override fun onResponse(items: MutableList<SuggestItem>) {
+            geoSuggestAdapter?.submitList(items) {
+                binding.suggestList.scrollToPosition(0)
+            }
+        }
+
+        override fun onError(error: Error) {
+            if (error is NetworkError) {
+                Snackbar.make(
+                    requireView(), R.string.error_connection, Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    private val suggestClickListener: GeoSuggestClickListener = { suggestItem ->
+        with(binding) {
+            if (suggestItem.action == SuggestItem.Action.SUBSTITUTE) {
+                searchView.editText.setText(suggestItem.displayText)
+            } else {
+                moveCamera(target = suggestItem.center)
+                searchView.hide()
+            }
         }
     }
 
@@ -107,6 +155,24 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                 moveCameraToMe()
             }
 
+            searchView.editText.setOnEditorActionListener { _, _, _ ->
+                searchView.hide()
+                false
+            }
+
+            searchView.addTransitionListener { _, _, newState ->
+                if (newState == SearchView.TransitionState.HIDDEN) {
+                    suggestSession.reset()
+                }
+            }
+
+            searchView.editText.doOnTextChanged { text, _, _, _ ->
+                viewModel.setSearchQuery(text.toString())
+            }
+
+            geoSuggestAdapter = GeoSuggestAdapter(suggestClickListener)
+            suggestList.adapter = geoSuggestAdapter
+
             buttonZoomIn.setOnClickListener {
                 changeZoom(true)
             }
@@ -128,11 +194,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
             val categoryName = result.getString(MapCategoriesFragment.RESULT_KEY_CATEGORY_NAME)
-            val category = categoryName?.let {
-                runCatching {
-                    MapCategory.valueOf(categoryName)
-                }.getOrNull()
-            } ?: MapCategory.NONE
+            val category = MapCategory.fromName(categoryName)
 
             // TODO: Open the filter screen
             viewModel.setCategory(category)
@@ -140,9 +202,13 @@ class MapFragment : Fragment(R.layout.fragment_map) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.selectedCategory.onEach {
-                    // TODO: Show places from selected category on the map
-                }.launchIn(this)
+                launch {
+                    viewModel.searchQuery
+                        .debounce(SUGGEST_DEBOUNCE_TIMEOUT)
+                        .collect {
+                            suggest(it)
+                        }
+                }
             }
         }
     }
@@ -150,6 +216,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     override fun onDestroyView() {
         map?.removeCameraListener(cameraListener)
         map = null
+        geoSuggestAdapter = null
 
         super.onDestroyView()
     }
@@ -217,7 +284,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     private fun moveCameraToMe(animate: Boolean = true) {
         moveCameraJob?.cancel()
         moveCameraJob = viewLifecycleOwner.lifecycleScope.launch {
-            runCatching {
+            try {
                 binding.myLocationProgress.show()
                 getLastLocation()?.let {
                     moveCamera(Point(it.latitude, it.longitude), DEFAULT_ZOOM, animate = animate)
@@ -226,8 +293,8 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                     moveCamera(Point(it.latitude, it.longitude), DEFAULT_ZOOM, animate = animate)
                 }
                 binding.myLocationProgress.hide()
-            }.onFailure {
-                if (it !is CancellationException) {
+            } catch (e: Exception) {
+                if (e !is CancellationException) {
                     Snackbar.make(
                         requireView(), R.string.error_my_location, Snackbar.LENGTH_LONG
                     ).show()
@@ -267,6 +334,24 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         }
     }
 
+    private fun suggest(text: String) = viewLifecycleOwner.lifecycleScope.launch {
+        val map = map ?: return@launch
+
+        try {
+            getCurrentLocation()?.let {
+                suggestOptions.userPosition = Point(it.latitude, it.longitude)
+            }
+            suggestSession.suggest(
+                text,
+                BoundingBox(map.visibleRegion.bottomLeft, map.visibleRegion.topRight),
+                suggestOptions,
+                suggestListener,
+            )
+        } catch (e: Exception) {
+            Snackbar.make(requireView(), R.string.error_suggest, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
     private fun requestLocationPermissions() {
         locationPermissionRequest.launch(
             arrayOf(
@@ -293,5 +378,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         private const val ZOOM_STEP = 1f
         private val ZOOM_ANIMATION = Animation(Animation.Type.LINEAR, 0.25f)
         private val MOVE_ANIMATION = Animation(Animation.Type.SMOOTH, 0.5f)
+
+        private const val SUGGEST_DEBOUNCE_TIMEOUT = 300L
     }
 }

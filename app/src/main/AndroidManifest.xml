@@ -35,7 +35,8 @@
         <activity
             android:name=".navigation.ui.NavigationActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.MamsPaps" />
+            android:theme="@style/Theme.MamsPaps"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

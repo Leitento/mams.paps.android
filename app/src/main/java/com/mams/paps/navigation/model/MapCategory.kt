@@ -7,5 +7,17 @@ enum class MapCategory {
     DEVELOPMENT,
     EDUCATION,
     HEALTH,
-    SHOP
+    SHOP;
+
+    companion object {
+        fun fromName(name: String?): MapCategory {
+            if (name == null) return NONE
+
+            return try {
+                MapCategory.valueOf(name)
+            } catch (e: IllegalArgumentException) {
+                NONE
+            }
+        }
+    }
 }
