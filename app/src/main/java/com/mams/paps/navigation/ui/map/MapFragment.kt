@@ -287,7 +287,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     private fun moveCameraToMe(animate: Boolean = true) {
         moveCameraJob?.cancel()
         moveCameraJob = viewLifecycleOwner.lifecycleScope.launch {
-            runCatching {
+            try {
                 binding.myLocationProgress.show()
                 getLastLocation()?.let {
                     moveCamera(Point(it.latitude, it.longitude), DEFAULT_ZOOM, animate = animate)
@@ -296,8 +296,8 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                     moveCamera(Point(it.latitude, it.longitude), DEFAULT_ZOOM, animate = animate)
                 }
                 binding.myLocationProgress.hide()
-            }.onFailure {
-                if (it !is CancellationException) {
+            } catch (e: Exception) {
+                if (e !is CancellationException) {
                     Snackbar.make(
                         requireView(), R.string.error_my_location, Snackbar.LENGTH_LONG
                     ).show()
@@ -340,7 +340,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     private fun suggest(text: String) = viewLifecycleOwner.lifecycleScope.launch {
         val map = map ?: return@launch
 
-        runCatching {
+        try {
             getCurrentLocation()?.let {
                 suggestOptions.userPosition = Point(it.latitude, it.longitude)
             }
@@ -350,7 +350,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                 suggestOptions,
                 suggestListener,
             )
-        }.onFailure {
+        } catch (e: Exception) {
             Snackbar.make(requireView(), R.string.error_suggest, Snackbar.LENGTH_LONG).show()
         }
     }
