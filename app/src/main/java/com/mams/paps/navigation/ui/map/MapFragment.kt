@@ -99,7 +99,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         }
     }
 
-    private val suggestClickListener: GeoSuggestClickListener = { suggestItem ->
+    private val suggestClickListener = { suggestItem: SuggestItem ->
         with(binding) {
             if (suggestItem.action == SuggestItem.Action.SUBSTITUTE) {
                 searchView.editText.setText(suggestItem.displayText)

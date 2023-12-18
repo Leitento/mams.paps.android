@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mams.paps.databinding.ItemGeoSuggestBinding
 import com.yandex.mapkit.search.SuggestItem
 
-typealias GeoSuggestClickListener = (item: SuggestItem) -> Unit
-
 class GeoSuggestAdapter(
-    private val clickListener: GeoSuggestClickListener
+    private val clickListener: (item: SuggestItem) -> Unit
 ) : ListAdapter<SuggestItem, GeoSuggestViewHolder>(DiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GeoSuggestViewHolder {
         val binding = ItemGeoSuggestBinding.inflate(
@@ -43,7 +41,7 @@ class GeoSuggestAdapter(
 
 class GeoSuggestViewHolder(
     private val binding: ItemGeoSuggestBinding,
-    private val clickListener: GeoSuggestClickListener,
+    private val clickListener: (item: SuggestItem) -> Unit,
 ) : ViewHolder(binding.root) {
 
     private var suggestItem: SuggestItem? = null
