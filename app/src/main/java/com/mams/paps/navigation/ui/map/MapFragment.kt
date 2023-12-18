@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
@@ -27,7 +28,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.search.SearchView
 import com.google.android.material.snackbar.Snackbar
 import com.mams.paps.R
-import com.mams.paps.common.ui.utils.textChangesFlow
 import com.mams.paps.databinding.FragmentMapBinding
 import com.mams.paps.navigation.model.MapCategory
 import com.yandex.mapkit.Animation
@@ -50,14 +50,14 @@ import com.yandex.mapkit.search.SuggestSession
 import com.yandex.mapkit.search.SuggestType
 import com.yandex.runtime.Error
 import com.yandex.runtime.network.NetworkError
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.CancellationException
 
+@FlowPreview
 class MapFragment : Fragment(R.layout.fragment_map) {
 
     private val viewModel: MapViewModel by navGraphViewModels(R.id.navigation_map)
@@ -166,6 +166,10 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                 }
             }
 
+            searchView.editText.doOnTextChanged { text, _, _, _ ->
+                viewModel.setSearchQuery(text.toString())
+            }
+
             geoSuggestAdapter = GeoSuggestAdapter(suggestClickListener)
             suggestList.adapter = geoSuggestAdapter
 
@@ -190,11 +194,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
             val categoryName = result.getString(MapCategoriesFragment.RESULT_KEY_CATEGORY_NAME)
-            val category = categoryName?.let {
-                runCatching {
-                    MapCategory.valueOf(categoryName)
-                }.getOrNull()
-            } ?: MapCategory.NONE
+            val category = MapCategory.fromName(categoryName)
 
             // TODO: Open the filter screen
             viewModel.setCategory(category)
@@ -202,16 +202,13 @@ class MapFragment : Fragment(R.layout.fragment_map) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.selectedCategory.onEach {
-                    // TODO: Show places from selected category on the map
-                }.launchIn(this)
-
-                binding.searchView.editText.textChangesFlow()
-                    .debounce(SUGGEST_DEBOUNCE_TIMEOUT)
-                    .onEach {
-                        suggest(it.toString())
-                    }
-                    .launchIn(this)
+                launch {
+                    viewModel.searchQuery
+                        .debounce(SUGGEST_DEBOUNCE_TIMEOUT)
+                        .collect {
+                            suggest(it)
+                        }
+                }
             }
         }
     }

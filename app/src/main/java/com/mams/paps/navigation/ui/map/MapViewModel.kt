@@ -10,7 +10,14 @@ class MapViewModel : ViewModel() {
     private val _selectedCategory = MutableStateFlow(MapCategory.NONE)
     val selectedCategory = _selectedCategory.asStateFlow()
 
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
+
     fun setCategory(category: MapCategory) {
         _selectedCategory.value = category
+    }
+
+    fun setSearchQuery(query: String) {
+        _searchQuery.value = query
     }
 }
