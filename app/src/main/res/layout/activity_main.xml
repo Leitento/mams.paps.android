@@ -23,42 +23,41 @@
         android:layout_marginStart="@dimen/main_screen_spacing"
         android:drawablePadding="@dimen/small_spacing"
         app:drawableStartCompat="@drawable/ic_geo"
-        app:layout_constraintBottom_toBottomOf="@+id/avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/button_logout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="@+id/button_logout"
         tools:text="Москва" />
 
     <TextView
         android:id="@+id/name"
-        style="@style/TextAppearance.Material3.BodyLarge"
+        style="@style/TextAppearance.App.MainName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/main_screen_spacing"
         android:layout_marginEnd="@dimen/small_spacing"
-        app:layout_constraintBottom_toBottomOf="@+id/avatar"
-        app:layout_constraintEnd_toStartOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@+id/avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/button_logout"
+        app:layout_constraintEnd_toStartOf="@id/button_logout"
+        app:layout_constraintTop_toTopOf="@+id/button_logout"
         tools:text="Дмитрий" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/avatar"
-        android:layout_width="@dimen/main_screen_avatar_size"
-        android:layout_height="@dimen/main_screen_avatar_size"
-        android:layout_marginTop="@dimen/small_spacing"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_logout"
+        style="@style/Widget.App.LogoutButton"
+        android:layout_width="@dimen/main_screen_logout_button_size"
+        android:layout_height="@dimen/main_screen_logout_button_size"
+        android:layout_marginTop="@dimen/main_screen_spacing"
         android:layout_marginEnd="@dimen/main_screen_spacing"
         android:layout_marginBottom="@dimen/small_spacing"
         app:layout_constraintBottom_toTopOf="@id/barrier_top_buttons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_top_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="location_name,name,avatar" />
+        app:constraint_referenced_ids="location_name,name,button_logout" />
 
     <ImageView
         android:id="@+id/logo"

@@ -9,7 +9,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.mams.paps.MamsPapsApplication
 import com.mams.paps.auth.data.local.AuthManager
-import com.mams.paps.auth.data.local.AuthState
 import com.mams.paps.auth.validator.EmailValidator
 import com.mams.paps.auth.validator.PasswordValidator
 import kotlinx.coroutines.channels.Channel
@@ -31,7 +30,7 @@ class LoginViewModel(
     val isAuthenticated = _isAuthenticated.asStateFlow()
 
     fun continueAsGuest() {
-        authManager.state = AuthState.Guest
+        authManager.setAuthenticated(isGuest = true)
         _isAuthenticated.value = true
     }
 
@@ -51,7 +50,7 @@ class LoginViewModel(
             }
             else -> {}
         }
-        authManager.state = AuthState.Authenticated
+        authManager.setAuthenticated()
         _isAuthenticated.value = true
     }
 

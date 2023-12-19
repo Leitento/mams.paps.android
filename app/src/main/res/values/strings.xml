@@ -35,4 +35,5 @@
     <string name="category_health">Аптеки\nПоликлиники</string>
     <string name="error_suggest">Во время поиска произошла ошибка.</string>
     <string name="error_connection">Не удалось совершить поиск. Проверьте ваше соединение с интернетом.</string>
+    <string name="guest">Гость</string>
 </resources>
