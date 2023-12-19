@@ -7,7 +7,7 @@ import com.yandex.mapkit.MapKitFactory
 class MamsPapsApplication : Application() {
 
     val authManager by lazy {
-        AuthManager()
+        AuthManager(this)
     }
 
     override fun onCreate() {

@@ -25,6 +25,7 @@ import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
+import com.mams.paps.auth.ui.AuthActivity
 import com.mams.paps.common.ui.ActionButton
 import com.mams.paps.common.ui.ActionButtonAdapter
 import com.mams.paps.common.ui.AdaptiveSpacingItemDecoration
@@ -33,7 +34,6 @@ import com.mams.paps.navigation.ui.NavigationActivity
 import com.mams.paps.onboarding.ui.OnboardingActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -152,27 +152,44 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 )
             )
             actionButtonList.adapter = adapter
-            // TODO: Replace placeholders with real data
-            locationName.text = "Москва"
-            name.text = "Дмитрий"
-            avatar.setImageResource(R.drawable.ic_logo)
+
+            buttonLogout.setOnClickListener {
+                viewModel.logout()
+            }
         }
 
         adapter.submitList(actionButtonList)
 
         lifecycleScope.launch {
-            withContext(Dispatchers.Main.immediate) {
-                viewModel.uiEvent.collect {
-                    when (it) {
-                        UiEvent.NavigateToHome -> {
-                            shouldKeepSplashScreen = false
-                        }
+            viewModel.uiState.collect {
+                with(binding) {
+                    locationName.text = it.locationName
+                    name.text = if (it.isGuest) {
+                        getString(R.string.guest)
+                    } else {
+                        it.userFirstName
+                    }
+                }
+            }
+        }
 
-                        UiEvent.NavigateToOnboarding -> {
-                            val intent = Intent(this@MainActivity, OnboardingActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
+        lifecycleScope.launch(Dispatchers.Main.immediate) {
+            viewModel.uiEvent.collect {
+                when (it) {
+                    UiEvent.NavigateToHome -> {
+                        shouldKeepSplashScreen = false
+                    }
+
+                    UiEvent.NavigateToAuth -> {
+                        val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
+                    UiEvent.NavigateToOnboarding -> {
+                        val intent = Intent(this@MainActivity, OnboardingActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 }
             }
@@ -192,11 +209,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun setWindowInsetsListeners() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.avatar) { view, windowInsets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.buttonLogout) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
             view.updateLayoutParams<MarginLayoutParams> {
-                topMargin = resources.getDimension(R.dimen.common_spacing).toInt() + insets.top
+                topMargin = resources.getDimension(R.dimen.main_screen_spacing).toInt() + insets.top
             }
 
             windowInsets
