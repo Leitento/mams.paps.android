@@ -34,7 +34,6 @@ import com.mams.paps.navigation.ui.NavigationActivity
 import com.mams.paps.onboarding.ui.OnboardingActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -162,37 +161,35 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         adapter.submitList(actionButtonList)
 
         lifecycleScope.launch {
-            launch {
-                viewModel.uiState.collect {
-                    with(binding) {
-                        locationName.text = it.locationName
-                        name.text = if (it.isGuest) {
-                             getString(R.string.guest)
-                        } else {
-                            it.userFirstName
-                        }
+            viewModel.uiState.collect {
+                with(binding) {
+                    locationName.text = it.locationName
+                    name.text = if (it.isGuest) {
+                        getString(R.string.guest)
+                    } else {
+                        it.userFirstName
                     }
                 }
             }
+        }
 
-            withContext(Dispatchers.Main.immediate) {
-                viewModel.uiEvent.collect {
-                    when (it) {
-                        UiEvent.NavigateToHome -> {
-                            shouldKeepSplashScreen = false
-                        }
+        lifecycleScope.launch(Dispatchers.Main.immediate) {
+            viewModel.uiEvent.collect {
+                when (it) {
+                    UiEvent.NavigateToHome -> {
+                        shouldKeepSplashScreen = false
+                    }
 
-                        UiEvent.NavigateToAuth -> {
-                            val intent = Intent(this@MainActivity, AuthActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
+                    UiEvent.NavigateToAuth -> {
+                        val intent = Intent(this@MainActivity, AuthActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
 
-                        UiEvent.NavigateToOnboarding -> {
-                            val intent = Intent(this@MainActivity, OnboardingActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
+                    UiEvent.NavigateToOnboarding -> {
+                        val intent = Intent(this@MainActivity, OnboardingActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 }
             }
