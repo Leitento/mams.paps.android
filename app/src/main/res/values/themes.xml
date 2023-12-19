@@ -19,8 +19,6 @@
         <item name="colorSurfaceContainerHigh">@color/white</item>
         <item name="colorSurfaceContainerHighest">@color/white</item>
         <item name="android:colorBackground">@color/white</item>
-        <!--    Цвет лейбла названий иконок ниж.нав. и шапки-->
-        <item name="colorOnSurface">@color/red</item>
         <!--    Цвет иконки нажней навигации -->
         <item name="colorOnSecondaryContainer">@color/red</item>
     </style>
