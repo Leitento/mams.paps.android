@@ -14,6 +14,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -31,19 +32,18 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            authManager.state.collect { authState ->
-                if (authState is AuthState.Authenticated) {
-                    _uiState.update {
-                        it.copy(
-                            locationName = "Москва",
-                            userFirstName = "Пользователь",
-                            isGuest = authState.isGuest
-                        )
-                    }
-                    _uiEvent.send(UiEvent.NavigateToHome)
-                } else if (authState is AuthState.Unauthenticated) {
-                    _uiEvent.send(UiEvent.NavigateToOnboarding)
+            val authState = authManager.state.first { it !is AuthState.Initializing }
+            if (authState is AuthState.Authenticated) {
+                _uiState.update {
+                    it.copy(
+                        locationName = "Москва",
+                        userFirstName = "Пользователь",
+                        isGuest = authState.isGuest
+                    )
                 }
+                _uiEvent.send(UiEvent.NavigateToHome)
+            } else if (authState is AuthState.Unauthenticated) {
+                _uiEvent.send(UiEvent.NavigateToOnboarding)
             }
         }
     }

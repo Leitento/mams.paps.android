@@ -32,7 +32,6 @@
             android:theme="@style/Theme.MamsPaps" />
         <activity
             android:name=".onboarding.ui.OnboardingActivity"
-            android:launchMode="singleTask"
             android:theme="@style/Theme.MamsPaps" />
         <activity
             android:name=".navigation.ui.NavigationActivity"
