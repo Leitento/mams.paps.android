@@ -39,5 +39,4 @@
             android:theme="@style/Theme.MamsPaps"
             android:windowSoftInputMode="adjustPan" />
     </application>
-
 </manifest>
