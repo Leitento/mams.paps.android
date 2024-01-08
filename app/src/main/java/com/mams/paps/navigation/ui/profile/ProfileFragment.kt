@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import com.mams.paps.NavMainDirections
 import com.mams.paps.R
@@ -20,9 +21,7 @@ import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
-    private var _binding: FragmentProfileBinding? = null
-    private val binding get() = _binding!!
-
+    private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel: ProfileViewModel by viewModels { ProfileViewModel.Factory }
 
     private val menuClickListener = ProfileMenuItemClickListener { profileMenuItem, _ ->
@@ -67,8 +66,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        _binding = FragmentProfileBinding.bind(view)
-
         val adapter = ProfileMenuAdapter(menuClickListener)
 
         with(binding) {
@@ -103,11 +100,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun handleUiState(uiState: UiState) {
