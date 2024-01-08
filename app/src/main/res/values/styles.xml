@@ -84,4 +84,12 @@
     <style name="Widget.App.MapIconButton.Square" parent="Widget.App.MapIconButton">
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Medium</item>
     </style>
+
+    <style name="TextAppearance.App.ToolbarTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextAppearance.App.ProfileDetails" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
 </resources>
