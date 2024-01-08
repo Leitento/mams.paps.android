@@ -12,7 +12,6 @@ class ProfileMenuAdapter(
     private val clickListener: ProfileMenuItemClickListener
 ) : ListAdapter<ProfileMenuItem, ProfileMenuViewHolder>(DiffCallback()) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileMenuViewHolder {
         val binding = ItemProfileMenuBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
