@@ -16,8 +16,8 @@
     <string name="events">События и мероприятия</string>
     <string name="services">Услуги и объявления</string>
     <string name="menu_add">Добавить</string>
-    <string name="menu_map">Что рядом</string>
-    <string name="menu_route">Маршрут</string>
+    <string name="menu_nearby">Что рядом</string>
+    <string name="menu_map">Карта</string>
     <string name="menu_profile">Профиль</string>
     <string name="menu_home">Главная</string>
     <string name="useful">Полезное</string>

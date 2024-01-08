@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:enabled="true"
-        android:icon="@drawable/ic_geo"
-        android:title="@string/menu_map" />
-    <item
-        android:id="@+id/navigation_route"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:enabled="true"
-        android:icon="@drawable/ic_map"
-        android:title="@string/menu_route" />
-    <item
         android:id="@+id/navigation_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="@string/menu_home" />
+    <item
+        android:id="@+id/navigation_nearby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:icon="@drawable/ic_geo"
+        android:title="@string/menu_nearby" />
+    <item
+        android:id="@+id/navigation_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:icon="@drawable/ic_map"
+        android:title="@string/menu_map" />
     <item
         android:id="@+id/navigation_add"
         android:layout_width="wrap_content"

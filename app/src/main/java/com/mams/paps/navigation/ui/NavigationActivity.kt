@@ -33,6 +33,7 @@ class NavigationActivity : AppCompatActivity(R.layout.activity_navigation) {
 
         with(binding) {
             navController = fragmentContainer.getFragment<NavHostFragment>().navController
+            bottomNavigationView.selectedItemId = R.id.navigation_map
             bottomNavigationView.setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.navigation_home -> {
