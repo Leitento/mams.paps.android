@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.mams.paps.navigation.ui.map.MapFragment"
-        android:label="@string/menu_map"
+        android:label="@string/menu_nearby"
         tools:layout="@layout/fragment_map" />
 
     <fragment
