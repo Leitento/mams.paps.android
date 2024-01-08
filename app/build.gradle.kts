@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.viewbindingdelegate)
     implementation(libs.yandex.mapkit)
     implementation(libs.datastore)
+    implementation(libs.coil)
     implementation(libs.play.services.location)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)

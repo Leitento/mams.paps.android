@@ -11,6 +11,7 @@ lifecycle = "2.6.2"
 navigation = "2.7.6"
 viewbindingdelegate = "1.5.9"
 datastore = "1.0.0"
+coil = "2.5.0"
 yandex-mapkit="4.4.0-full"
 play-services = "21.0.1"
 # Tests
@@ -32,6 +33,7 @@ navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-kt
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 viewbindingdelegate = { module = "com.github.kirich1409:viewbindingpropertydelegate-noreflection", version.ref = "viewbindingdelegate" }
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 yandex-mapkit = { module = "com.yandex.android:maps.mobile", version.ref = "yandex-mapkit" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-services" }
 # Tests
