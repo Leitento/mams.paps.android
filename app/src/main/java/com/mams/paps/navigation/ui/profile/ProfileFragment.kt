@@ -6,9 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -75,27 +74,24 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
 
             menuRecyclerView.adapter = adapter
-            adapter.submitList(menuItems)
+            adapter.items = menuItems
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.uiState.collect(::handleUiState)
-                }
+            viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collect(::handleUiState)
+        }
 
-                launch {
-                    viewModel.uiEvent.collect {
-                        when (it) {
-                            UiEvent.NavigateToAuth -> {
-                                val extras = ActivityNavigator.Extras.Builder()
-                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                                    .build()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
+                when (it) {
+                    UiEvent.NavigateToAuth -> {
+                        val extras = ActivityNavigator.Extras.Builder()
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            .build()
 
-                                val action = NavMainDirections.actionOpenAuthScreen()
-                                findNavController().navigate(action, extras)
-                            }
-                        }
+                        val action = NavMainDirections.actionOpenAuthScreen()
+                        findNavController().navigate(action, extras)
                     }
                 }
             }
