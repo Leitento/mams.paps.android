@@ -3,14 +3,21 @@ package com.mams.paps.navigation.ui.profile
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mams.paps.databinding.ItemProfileMenuBinding
 
 class ProfileMenuAdapter(
     private val clickListener: ProfileMenuItemClickListener
-) : ListAdapter<ProfileMenuItem, ProfileMenuViewHolder>(DiffCallback()) {
+) : RecyclerView.Adapter<ProfileMenuViewHolder>() {
+
+    var items: List<ProfileMenuItem> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileMenuViewHolder {
         val binding = ItemProfileMenuBinding.inflate(
@@ -20,17 +27,8 @@ class ProfileMenuAdapter(
     }
 
     override fun onBindViewHolder(holder: ProfileMenuViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
-
-    class DiffCallback : DiffUtil.ItemCallback<ProfileMenuItem>() {
-        override fun areItemsTheSame(oldItem: ProfileMenuItem, newItem: ProfileMenuItem): Boolean =
-            oldItem.titleResId == newItem.titleResId
-
-        override fun areContentsTheSame(
-            oldItem: ProfileMenuItem,
-            newItem: ProfileMenuItem
-        ): Boolean = oldItem == newItem
+        val item = items[position]
+        holder.bind(item)
     }
 }
 
