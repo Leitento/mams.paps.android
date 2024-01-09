@@ -36,4 +36,13 @@
     <string name="error_suggest">Во время поиска произошла ошибка.</string>
     <string name="error_connection">Не удалось совершить поиск. Проверьте ваше соединение с интернетом.</string>
     <string name="guest">Гость</string>
+    <string name="profile_title">Профиль</string>
+    <string name="profile_edit">Редактировать профиль</string>
+    <string name="profile_become_agent">Стать агентом</string>
+    <string name="profile_menu_favourites">Избранное</string>
+    <string name="profile_menu_notifications">Уведомления</string>
+    <string name="profile_menu_public_offer">Публичная оферта</string>
+    <string name="profile_menu_about_app">О приложении</string>
+    <string name="profile_menu_support">Поддержка Mams.Paps</string>
+    <string name="profile_menu_log_out">Выйти из аккаунта</string>
 </resources>

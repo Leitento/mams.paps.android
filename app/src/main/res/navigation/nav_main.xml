@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.mams.paps.navigation.ui.ProfileFragment"
+        android:name="com.mams.paps.navigation.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 
@@ -28,8 +28,20 @@
         android:name="com.mams.paps.main.ui.MainActivity"
         tools:layout="@layout/activity_main" />
 
+    <activity
+        android:id="@+id/auth_activity"
+        android:name="com.mams.paps.auth.ui.AuthActivity"
+        tools:layout="@layout/activity_auth" />
+
     <action
         android:id="@+id/action_openMainScreen"
         app:destination="@id/main_activity"
-        app:launchSingleTop="true" />
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_activity" />
+
+    <action
+        android:id="@+id/action_openAuthScreen"
+        app:destination="@id/auth_activity"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/auth_activity" />
 </navigation>

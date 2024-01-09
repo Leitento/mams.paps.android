@@ -19,4 +19,12 @@
     <dimen name="categories_horizontal_spacing">20dp</dimen>
     <dimen name="categories_action_button_size">160dp</dimen>
     <dimen name="main_screen_logout_button_size">24dp</dimen>
+    <dimen name="profile_photo_size">120dp</dimen>
+    <dimen name="profile_screen_spacing">20dp</dimen>
+    <dimen name="profile_become_agent_text_size">28sp</dimen>
+    <dimen name="profile_menu_icon_bg_size">46dp</dimen>
+    <dimen name="profile_menu_icon_size">28dp</dimen>
+    <dimen name="top_radius">32dp</dimen>
+    <dimen name="top_radius_negative">-32dp</dimen>
+    <dimen name="container_radius">32dp</dimen>
 </resources>
