@@ -19,6 +19,7 @@
         <item name="colorSurfaceContainerHigh">@color/white</item>
         <item name="colorSurfaceContainerHighest">@color/white</item>
         <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Theme.MamsPaps.Starting" parent="Theme.SplashScreen">

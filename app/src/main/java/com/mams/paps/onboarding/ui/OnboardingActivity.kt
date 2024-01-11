@@ -1,8 +1,17 @@
 package com.mams.paps.onboarding.ui
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mams.paps.R
 import com.mams.paps.auth.ui.AuthActivity
@@ -14,18 +23,18 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
 
     private val onboardingStages: List<OnboardingStage> = listOf(
         OnboardingStage(
-            R.drawable.img_first_screen_onb,
-            R.drawable.ic_dots_state_first,
+            R.drawable.img_onboarding_1,
+            R.drawable.ic_onboarding_dots_1,
             R.string.onboarding_first_screen
         ),
         OnboardingStage(
-            R.drawable.img_second_screen_onb,
-            R.drawable.ic_dots_state_second,
+            R.drawable.img_onboarding_2,
+            R.drawable.ic_onboarding_dots_2,
             R.string.onboarding_second_screen
         ),
         OnboardingStage(
-            R.drawable.img_third_screen_onb,
-            R.drawable.ic_dots_state_third,
+            R.drawable.img_onboarding_3,
+            R.drawable.ic_onboarding_dots_3,
             R.string.onboarding_third_screen
         ),
     )
@@ -33,8 +42,27 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
     private var currentStageIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                Color.TRANSPARENT,
+                Color.TRANSPARENT
+            )
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isNavigationBarContrastEnforced = false
+        }
         super.onCreate(savedInstanceState)
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            view.updatePadding(
+                top = insets.top,
+                bottom = insets.bottom
+            )
+
+            windowInsets
+        }
 
         binding.buttonToNextScreen.setOnClickListener {
             if (currentStageIndex < onboardingStages.size - 1) {
@@ -50,9 +78,9 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
     private fun setupOnboardingStage(index: Int) {
         val stage = onboardingStages[index]
 
-        binding.screenImage.setImageResource(stage.imageId)
-        binding.dotsState.setImageResource(stage.dotsId)
-        binding.textScreen.text = getString(stage.textId)
+        binding.screenImage.setImageResource(stage.imageResId)
+        binding.dotsState.setImageResource(stage.dotsResId)
+        binding.textScreen.text = getString(stage.textResId)
     }
 
     fun moveToAuth() {
@@ -61,8 +89,9 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
         finish()
     }
 }
+
 data class OnboardingStage(
-    val imageId: Int,
-    val dotsId: Int,
-    val textId: Int
+    @DrawableRes val imageResId: Int,
+    @DrawableRes val dotsResId: Int,
+    @StringRes val textResId: Int
 )
