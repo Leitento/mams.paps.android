@@ -37,7 +37,6 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding.buttonToNextScreen.setOnClickListener {
             if (currentStageIndex < onboardingStages.size - 1) {
                 currentStageIndex++
@@ -53,7 +52,7 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
         val stage = onboardingStages[index]
 
         binding.screenImage.setImageResource(stage.imageResId)
-        binding.dotsState.setImageResource(stage.dotsId)
+        binding.dotsState.setImageResource(stage.dotsResId)
         binding.textScreen.text = getString(stage.textResId)
     }
 
@@ -66,6 +65,6 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
 
 data class OnboardingStage(
     @DrawableRes val imageResId: Int,
-    val dotsId: Int,
+    @DrawableRes val dotsResId: Int,
     @StringRes val textResId: Int
 )
