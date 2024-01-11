@@ -30,13 +30,12 @@
     <ImageView
         android:id="@+id/dots_state"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@id/text_screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/screen_image"
-        app:layout_constraintVertical_bias="0.5" />
+        tools:src="@drawable/ic_dots_state_first" />
 
     <TextView
         android:id="@+id/text_screen"
@@ -61,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/onboarding_next"
         app:layout_constraintBottom_toBottomOf="parent" />
 
