@@ -17,17 +17,17 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
     private val onboardingStages: List<OnboardingStage> = listOf(
         OnboardingStage(
             R.drawable.img_onboarding_1,
-            R.drawable.ic_dots_state_first,
+            R.drawable.ic_onboarding_dots_1,
             R.string.onboarding_first_screen
         ),
         OnboardingStage(
             R.drawable.img_onboarding_2,
-            R.drawable.ic_dots_state_second,
+            R.drawable.ic_onboarding_dots_2,
             R.string.onboarding_second_screen
         ),
         OnboardingStage(
             R.drawable.img_onboarding_3,
-            R.drawable.ic_dots_state_third,
+            R.drawable.ic_onboarding_dots_3,
             R.string.onboarding_third_screen
         ),
     )

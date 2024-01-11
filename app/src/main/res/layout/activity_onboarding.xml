@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/screen_image"
-        tools:src="@drawable/ic_dots_state_first" />
+        tools:src="@drawable/ic_onboarding_dots_1" />
 
     <TextView
         android:id="@+id/text_screen"
