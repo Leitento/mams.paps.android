@@ -31,7 +31,7 @@
         android:id="@+id/dots_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/screen_image"
@@ -40,18 +40,15 @@
     <TextView
         android:id="@+id/text_screen"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:padding="20dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/button_to_next_screen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dots_state"
-        app:layout_constraintVertical_bias="0.5"
         tools:text="От родителей родителям!" />
 
     <com.google.android.material.button.MaterialButton
