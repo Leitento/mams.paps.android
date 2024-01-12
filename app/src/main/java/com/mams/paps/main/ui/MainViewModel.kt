@@ -48,7 +48,7 @@ class MainViewModel(
         }
     }
 
-    fun logout() {
+    fun logOut() {
         authManager.setUnauthenticated()
         viewModelScope.launch {
             _uiEvent.send(UiEvent.NavigateToAuth)

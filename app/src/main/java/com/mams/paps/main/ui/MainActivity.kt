@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             actionButtonList.adapter = adapter
 
             buttonLogout.setOnClickListener {
-                viewModel.logout()
+                viewModel.logOut()
             }
         }
 
