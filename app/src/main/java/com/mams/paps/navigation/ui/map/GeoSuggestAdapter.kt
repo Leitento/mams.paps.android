@@ -29,12 +29,13 @@ class GeoSuggestAdapter(
 
     class DiffCallback : DiffUtil.ItemCallback<SuggestItem>() {
         override fun areItemsTheSame(oldItem: SuggestItem, newItem: SuggestItem): Boolean {
-            return oldItem.title.text == newItem.title.text
+            return oldItem.uri == newItem.uri
+                    && oldItem.title.text == newItem.title.text
+                    && oldItem.subtitle?.text == newItem.subtitle?.text
         }
 
         override fun areContentsTheSame(oldItem: SuggestItem, newItem: SuggestItem): Boolean {
-            return oldItem.subtitle?.text == newItem.subtitle?.text
-                    && oldItem.distance?.text == newItem.distance?.text
+            return oldItem.distance?.text == newItem.distance?.text
         }
     }
 }
