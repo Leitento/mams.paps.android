@@ -153,8 +153,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             )
             actionButtonList.adapter = adapter
 
+            name.setOnClickListener {
+                val intent = Intent(this@MainActivity, NavigationActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    putExtra(NavigationActivity.ARG_NAVIGATE_TO, R.id.navigation_profile)
+                }
+                startActivity(intent)
+                finish()
+            }
             buttonLogout.setOnClickListener {
-                viewModel.logout()
+                viewModel.logOut()
             }
         }
 
