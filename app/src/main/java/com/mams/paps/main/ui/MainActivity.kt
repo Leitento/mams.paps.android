@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val adapter = ActionButtonAdapter(itemHeight) { actionId ->
             when (actionId) {
                 ACTION_BUTTON_ID_NAVIGATION -> {
-                    val intent = NavigationActivity.createIntent(this)
+                    val intent = Intent(this, NavigationActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -154,10 +154,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             actionButtonList.adapter = adapter
 
             name.setOnClickListener {
-                val intent = NavigationActivity.createIntent(
-                    this@MainActivity, R.id.navigation_profile
-                ).apply {
+                val intent = Intent(this@MainActivity, NavigationActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    putExtra(NavigationActivity.ARG_NAVIGATE_TO, R.id.navigation_profile)
                 }
                 startActivity(intent)
                 finish()
