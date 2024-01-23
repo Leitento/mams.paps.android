@@ -7,30 +7,30 @@
 
     <fragment
         android:id="@+id/navigation_map"
-        android:name="com.mams.paps.navigation.ui.map.MapFragment"
+        android:name="com.gomaping.navigation.ui.map.MapFragment"
         android:label="@string/menu_nearby"
         tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/navigation_add"
-        android:name="com.mams.paps.navigation.ui.AddFragment"
+        android:name="com.gomaping.navigation.ui.AddFragment"
         android:label="@string/menu_add"
         tools:layout="@layout/fragment_add" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.mams.paps.navigation.ui.profile.ProfileFragment"
+        android:name="com.gomaping.navigation.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 
     <activity
         android:id="@+id/main_activity"
-        android:name="com.mams.paps.main.ui.MainActivity"
+        android:name="com.gomaping.main.ui.MainActivity"
         tools:layout="@layout/activity_main" />
 
     <activity
         android:id="@+id/auth_activity"
-        android:name="com.mams.paps.auth.ui.AuthActivity"
+        android:name="com.gomaping.auth.ui.AuthActivity"
         tools:layout="@layout/activity_auth" />
 
     <action

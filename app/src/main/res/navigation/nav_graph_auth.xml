@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.mams.paps.auth.ui.LoginFragment"
+        android:name="com.gomaping.auth.ui.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
 
     <activity
         android:id="@+id/main_activity"
-        android:name="com.mams.paps.main.ui.MainActivity"
+        android:name="com.gomaping.main.ui.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 
