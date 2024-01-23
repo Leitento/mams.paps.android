@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">MAMS.PAPS</string>
+    <string name="app_name">GOMaping</string>
     <string name="onboarding_next">Далее</string>
     <string name="onboarding_first_screen">От родителей родителям!</string>
     <string name="onboarding_second_screen">Детям будет интересно!</string>
     <string name="onboarding_third_screen">Локации, которые подходят именно вашей семье.</string>
-    <string name="auth_title">Присоединяйся к MAMS.PAPS</string>
+    <string name="auth_title">Присоединяйся к GO˙MAPING</string>
     <string name="auth_description">Получай уведомления о выгодных предложениях и копи баллы на скидку</string>
     <string name="email">Электронная почта</string>
     <string name="password">Пароль</string>
@@ -43,6 +43,6 @@
     <string name="profile_menu_notifications">Уведомления</string>
     <string name="profile_menu_public_offer">Публичная оферта</string>
     <string name="profile_menu_about_app">О приложении</string>
-    <string name="profile_menu_support">Поддержка Mams.Paps</string>
+    <string name="profile_menu_support">Поддержка GoMaping</string>
     <string name="profile_menu_log_out">Выйти из аккаунта</string>
 </resources>

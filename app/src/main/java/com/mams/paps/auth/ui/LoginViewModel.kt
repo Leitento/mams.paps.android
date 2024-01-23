@@ -7,7 +7,7 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.mams.paps.MamsPapsApplication
+import com.mams.paps.GoMapingApplication
 import com.mams.paps.auth.data.local.AuthManager
 import com.mams.paps.auth.validator.EmailValidator
 import com.mams.paps.auth.validator.PasswordValidator
@@ -58,7 +58,7 @@ class LoginViewModel(
         val Factory = viewModelFactory {
             initializer {
                 val savedStateHandle = createSavedStateHandle()
-                val authManager = (this[APPLICATION_KEY] as MamsPapsApplication).authManager
+                val authManager = (this[APPLICATION_KEY] as GoMapingApplication).authManager
                 LoginViewModel(
                     authManager = authManager,
                     savedStateHandle = savedStateHandle

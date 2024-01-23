@@ -4,7 +4,7 @@ import android.app.Application
 import com.mams.paps.auth.data.local.AuthManager
 import com.yandex.mapkit.MapKitFactory
 
-class MamsPapsApplication : Application() {
+class GoMapingApplication : Application() {
 
     val authManager by lazy {
         AuthManager(this)
