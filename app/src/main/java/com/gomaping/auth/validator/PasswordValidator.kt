@@ -1,4 +1,4 @@
-package com.gomaping.gomaping.auth.validator
+package com.gomaping.auth.validator
 
 object PasswordValidator : Validator<CharSequence?, PasswordValidator.Result> {
     override fun validate(value: CharSequence?): Result {

@@ -1,4 +1,4 @@
-package com.gomaping.gomaping
+package com.gomaping
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

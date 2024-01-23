@@ -1,4 +1,4 @@
-package com.gomaping.gomaping.auth.validator
+package com.gomaping.auth.validator
 
 import android.util.Patterns
 

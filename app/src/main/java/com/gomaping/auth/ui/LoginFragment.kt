@@ -15,8 +15,8 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.NavGraphAuthDirections
 import com.gomaping.R
+import com.gomaping.auth.validator.PasswordValidator
 import com.gomaping.databinding.FragmentLoginBinding
-import com.gomaping.gomaping.auth.validator.PasswordValidator
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

@@ -9,8 +9,8 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.gomaping.GoMapingApplication
 import com.gomaping.auth.data.local.AuthManager
-import com.gomaping.gomaping.auth.validator.EmailValidator
-import com.gomaping.gomaping.auth.validator.PasswordValidator
+import com.gomaping.auth.validator.EmailValidator
+import com.gomaping.auth.validator.PasswordValidator
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
