@@ -11,11 +11,11 @@ val properties = Properties().apply {
 }
 
 android {
-    namespace = "com.mams.paps"
+    namespace = "com.gomaping"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mams.paps"
+        applicationId = "com.gomaping"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

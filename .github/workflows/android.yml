@@ -34,5 +34,5 @@ jobs:
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: mamspaps-debug.apk
+        name: gomaping-debug.apk
         path: app/build/outputs/apk/debug/app-debug.apk

@@ -1,1 +1,1 @@
-# mams.paps
+# GOMaping

@@ -1,13 +1,13 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.MamsPaps" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Base.Theme.GoMaping" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
         <item name="borderlessButtonStyle">@style/Widget.App.Button.TextButton</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.MamsPaps" parent="Base.Theme.MamsPaps">
+    <style name="Theme.GoMaping" parent="Base.Theme.GoMaping">
         <item name="colorPrimary">@color/blue</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/orange</item>
@@ -22,9 +22,9 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="Theme.MamsPaps.Starting" parent="Theme.SplashScreen">
+    <style name="Theme.GoMaping.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
-        <item name="postSplashScreenTheme">@style/Theme.MamsPaps</item>
+        <item name="postSplashScreenTheme">@style/Theme.GoMaping</item>
     </style>
 </resources>

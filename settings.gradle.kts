@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MAMS.PAPS"
+rootProject.name = "GOMaping"
 include(":app")
