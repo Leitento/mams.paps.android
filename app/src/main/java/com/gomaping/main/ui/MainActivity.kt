@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.auth.ui.AuthActivity
@@ -31,6 +32,7 @@ import com.gomaping.common.ui.ActionButtonAdapter
 import com.gomaping.common.ui.AdaptiveSpacingItemDecoration
 import com.gomaping.databinding.ActivityMainBinding
 import com.gomaping.navigation.ui.NavigationActivity
+import com.gomaping.navigation.ui.events.EventsFragment
 import com.gomaping.onboarding.ui.OnboardingActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -133,6 +135,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 }
 
                 ACTION_BUTTON_ID_EVENTS -> {
+
                     // TODO: Open events screen
                 }
 

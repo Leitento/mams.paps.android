@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="18dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/image"
+                android:src="@drawable/circus" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/title_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/title_event"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/card_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/action_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image"
+            android:src="@drawable/ic_event_move"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/link_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/circus"
+            android:textColor="#275A8A"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/title_event"
+            app:layout_constraintTop_toBottomOf="@+id/title_event" />
+
+        <TextView
+            android:id="@+id/description_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:ellipsize="end"
+            android:text="@string/descriptions"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/link_event"
+            app:layout_constraintTop_toBottomOf="@id/link_event" />
+
+        <TextView
+            android:id="@+id/schedule_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_event"
+            android:textColor="#275A8A"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/description_event"
+            app:layout_constraintTop_toBottomOf="@id/description_event" />
+
+        <TextView
+            android:id="@+id/break_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/break_event"
+            android:textColor="#275A8A"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/schedule_event"
+            app:layout_constraintTop_toBottomOf="@id/schedule_event" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="#E6716F"
+            app:layout_constraintBottom_toBottomOf="@+id/card_image"
+            app:layout_constraintStart_toEndOf="@id/card_image">
+
+            <TextView
+                android:id="@+id/reviews_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_star"
+                android:drawablePadding="4dp"
+                android:paddingHorizontal="8dp"
+                android:text="@string/reviews_event"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/card_reviews"
+            app:layout_constraintStart_toEndOf="@+id/card_reviews"
+            app:layout_constraintTop_toTopOf="@+id/card_reviews"
+            app:strokeWidth="0dp">
+
+            <TextView
+                android:id="@+id/car_time_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_car"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/car_time_event"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/distance_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/distance"
+            android:textColor="#4F4F4F"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/card_time"
+            app:layout_constraintStart_toEndOf="@id/card_time"
+            app:layout_constraintTop_toTopOf="@+id/card_time" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
