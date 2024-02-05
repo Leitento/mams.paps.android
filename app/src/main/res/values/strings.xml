@@ -51,9 +51,24 @@
     <string name="image">Image</string>
     <string name="circus">Цирк</string>
     <string name="descriptions">Самый старый цирк в нашей стране, известный далеко за её пределами. Сильнейшие мастера....</string>
-    <string name="schedule_event">Ежедневно 11:00 - 19:00</string>
-    <string name="break_event">Перерыв 15:00 - 16:00</string>
+    <string name="schedule_event">Ежедневно 11:00 – 19:00</string>
+    <string name="break_event">Перерыв 15:00 – 16:00</string>
     <string name="reviews_event">4.6</string>
     <string name="distance">10 км</string>
     <string name="car_time_event">20 мин</string>
+    <string name="city">Москва</string>
+    <string name="date">01.01.24</string>
+    <string name="filter">Фильтры</string>
+    <string name="recommendations">Рекомендации для Вас</string>
+    <string name="button_view">Показать</string>
+
+    <!-- Event Filter Main Menu-->
+    <string name="event_rating">Рейтинг</string>
+    <string name="event_age_group">Возрастная группа</string>
+    <string name="event_exhibitions">Выставки</string>
+    <string name="event_concerts">Концерты</string>
+    <string name="event_theatre">Театры</string>
+    <string name="event_festivals">Фестивали</string>
+    <string name="event_sport">Спорт</string>
+
 </resources>

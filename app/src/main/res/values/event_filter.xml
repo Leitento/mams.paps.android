@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Event Filter CheckBox-->
+    <string-array name="event_rating">
+        <item>меньше 3</item>
+        <item>больше 3</item>
+        <item>меньше 4</item>
+        <item>больше 4</item>
+        <item>меньше 5</item>
+    </string-array>
+    <string-array name="event_age_group">
+        <item>0+</item>
+        <item>1 – 3</item>
+        <item>3 – 6</item>
+        <item>6+</item>
+    </string-array>
+    <string-array name="event_exhibitions">
+        <item>Художественная</item>
+        <item>Военная</item>
+        <item>Спортивная</item>
+        <item>Бесплатная</item>
+        <item>Военная</item>
+    </string-array>
+    <string-array name="event_concerts">
+        <item>Классика</item>
+        <item>Популярная музыка</item>
+        <item>Детский</item>
+        <item>Рок</item>
+    </string-array>
+    <string-array name="event_theatre">
+        <item>Комедия</item>
+        <item>Трагедия</item>
+        <item>Перфоманс</item>
+        <item>Детский</item>
+    </string-array>
+    <string-array name="event_festivals">
+        <item>Этнический</item>
+        <item>Еда</item>
+        <item>Творчество</item>
+        <item>Музыкальный</item>
+        <item>Ярмарка</item>
+    </string-array>
+    <string-array name="event_sport">
+        <item>Футбол</item>
+        <item>Волейбол</item>
+        <item>Хоккей</item>
+        <item>Бадминтон</item>
+    </string-array>
+</resources>

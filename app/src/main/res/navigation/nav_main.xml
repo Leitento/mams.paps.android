@@ -45,8 +45,9 @@
         app:launchSingleTop="true"
         app:popUpTo="@id/auth_activity" />
     <fragment
-        android:id="@+id/eventsFragment"
+        android:id="@+id/navigation_nearby"
         android:name="com.gomaping.navigation.ui.events.EventsFragment"
         android:label="fragment_events"
         tools:layout="@layout/fragment_events" />
+
 </navigation>

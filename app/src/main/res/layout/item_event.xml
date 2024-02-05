@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="20dp"
@@ -38,8 +37,11 @@
             android:text="@string/title_event"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="2"
             app:layout_constraintStart_toEndOf="@id/card_image"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/action_event"/>
 
         <ImageView
             android:id="@+id/action_event"
@@ -70,6 +72,7 @@
             android:text="@string/descriptions"
             android:textColor="@color/black"
             android:textSize="12sp"
+            android:maxLines="4"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/link_event"
@@ -108,7 +111,7 @@
                 android:id="@+id/reviews_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_star"
+                app:drawableEndCompat="@drawable/ic_star"
                 android:drawablePadding="4dp"
                 android:paddingHorizontal="8dp"
                 android:text="@string/reviews_event"
@@ -131,7 +134,7 @@
                 android:id="@+id/car_time_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_car"
+                app:drawableStartCompat="@drawable/ic_car"
                 android:drawablePadding="4dp"
                 android:gravity="center"
                 android:text="@string/car_time_event"
