@@ -1,1 +1,1 @@
-# GOMaping
+# GOmaping
