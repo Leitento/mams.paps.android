@@ -8,9 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gomaping.R
 import com.gomaping.databinding.ItemFilterMenuBinding
 import com.gomaping.navigation.ui.events.model.EventFilterMain
+import com.gomaping.navigation.ui.events.model.Filter
 import com.yandex.runtime.Runtime.getApplicationContext
 
-class EventFilterMainAdapter(private val data: List<EventFilterMain>) :
+interface OnItemClickListener {
+    fun onItemClick(filter: Filter)
+}
+
+class EventFilterMainAdapter(
+    private val listener: OnItemClickListener,
+    private val data: List<EventFilterMain>) :
     RecyclerView.Adapter<EventFilterMainAdapter.EventFilterMainViewHolder>() {
     private var selectedPosition = 0
     override fun getItemCount(): Int = data.size
@@ -19,7 +26,7 @@ class EventFilterMainAdapter(private val data: List<EventFilterMain>) :
         val binding = ItemFilterMenuBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return EventFilterMainViewHolder(binding)
+        return EventFilterMainViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: EventFilterMainViewHolder, position: Int) {
@@ -48,11 +55,13 @@ class EventFilterMainAdapter(private val data: List<EventFilterMain>) :
 
     inner class EventFilterMainViewHolder(
         val binding: ItemFilterMenuBinding,
+        private val listener: OnItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EventFilterMain) {
             with(binding) {
                 itemView.setOnClickListener {
+                    listener.onItemClick(item.title)
                     val oldPosition = selectedPosition
                     selectedPosition = adapterPosition
                     notifyItemChanged(oldPosition)

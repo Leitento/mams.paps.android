@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class EventsViewModel : ViewModel() {
+
     private val repositoryImpl = EventRepositoryImpl()
     private val _events = MutableStateFlow<List<EventModel>>(listOf())
     val events = _events.asStateFlow()

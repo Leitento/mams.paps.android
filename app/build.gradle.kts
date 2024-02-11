@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.json)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

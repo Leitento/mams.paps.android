@@ -8,7 +8,7 @@ import com.gomaping.databinding.ItemEventBinding
 import com.gomaping.navigation.ui.events.model.EventModel
 
 class EventsAdapter(
- //   private val listener: (Long) -> Unit,
+    private val listener: (Long) -> Unit,
 ) : androidx.recyclerview.widget.ListAdapter<EventModel, EventsAdapter.EventViewHolder>(DiffCallback()) {
 
 
@@ -16,7 +16,7 @@ class EventsAdapter(
         val binding = ItemEventBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return EventViewHolder(binding)
+        return EventViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
@@ -26,13 +26,13 @@ class EventsAdapter(
 
     class EventViewHolder(
         private val binding: ItemEventBinding,
-    //    private val listener: (Long) -> Unit,
+        private val listener: (Long) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(event: EventModel) {
-     //       itemView.setOnClickListener {
-      //          listener(event.id)
-      //      }
+            binding.actionEvent.setOnClickListener {
+
+            }
 
             with(binding) {
                 titleEvent.text = event.title
