@@ -24,22 +24,26 @@ class EventsFilterFragment : Fragment(R.layout.fragment_events_filter) {
     private val filterSettings =
         Filter.entries.associateBy({ it }, { mutableListOf<EventFilterCheckBox>() }).toMutableMap()
 
-    private lateinit var adapter: EventFilterMainAdapter
-    private lateinit var filterAdapter: EventFilterCheckBoxAdapter
-    private val viewModel: EventFilterViewModel by viewModels()
+    private val viewModel: EventFilterViewModel by viewModels { EventFilterViewModel.Factory }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setFilterMap()
+        initializeAdapters()
 
-        adapter = EventFilterMainAdapter(object : OnItemClickListener {
-            override fun onItemClick(filter: Filter) {
-                val newData = filterSettings[filter] ?: listOf()
-                filterAdapter.submitList(newData)
-            }
-        }, viewModel.getMainFilters())
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
 
-        filterAdapter = EventFilterCheckBoxAdapter(object : OnChooseListener {
+        binding.buttonView.setOnClickListener {
+            viewModel.saveSharedPref(filterSettings)
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+    }
+
+    private fun initializeAdapters() {
+
+        val filterAdapter = EventFilterCheckBoxAdapter(object : OnChooseListener {
             override fun onClick(item: EventFilterCheckBox, position: Int) {
                 val list = filterSettings[item.filter]?.toMutableList() ?: mutableListOf()
                 val findPosition = list.find { it.positionId == position }
@@ -49,34 +53,31 @@ class EventsFilterFragment : Fragment(R.layout.fragment_events_filter) {
                 }
             }
         })
+
+        val adapter = EventFilterMainAdapter(object : OnItemClickListener {
+            override fun onItemClick(filter: Filter) {
+                val newData = filterSettings[filter] ?: listOf()
+                filterAdapter.submitList(newData)
+            }
+        }, viewModel.getMainFilters())
+        binding.recyclerMainFilter.adapter = adapter
         val firstList = filterSettings[Filter.RATING]?.toList()
         if (firstList != null) {
-             filterAdapter.submitList(firstList)
+            filterAdapter.submitList(firstList)
         } else {
             filterAdapter.submitList(viewModel.getFilters(Filter.RATING))
         }
-
         binding.recyclerFilter.adapter = filterAdapter
-        binding.recyclerMainFilter.adapter = adapter
 
         val dividerItemDecoration =
             DividerItemDecoration(binding.recyclerFilter.context, RecyclerView.VERTICAL)
         ResourcesCompat.getDrawable(resources, R.drawable.divider_drawable, null)
             ?.let { dividerItemDecoration.setDrawable(it) }
         binding.recyclerFilter.addItemDecoration(dividerItemDecoration)
-
-        binding.toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
-
-        binding.buttonView.setOnClickListener {
-            SharedPrefUtils.saveFilters(requireContext(), filterSettings.toMap())
-            requireActivity().supportFragmentManager.popBackStack()
-        }
     }
 
     private fun setFilterMap() {
-        val filterMap = SharedPrefUtils.loadFilters(requireContext())
+        val filterMap = viewModel.loadSharePref()
         if (filterMap.isEmpty()) {
             for (filter in Filter.entries) {
                 val list = viewModel.getFilters(filter)
@@ -91,5 +92,4 @@ class EventsFilterFragment : Fragment(R.layout.fragment_events_filter) {
             }
         }
     }
-
 }

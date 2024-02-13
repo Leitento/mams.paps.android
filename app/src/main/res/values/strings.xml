@@ -70,5 +70,9 @@
     <string name="event_theatre">Театры</string>
     <string name="event_festivals">Фестивали</string>
     <string name="event_sport">Спорт</string>
+    <string name="choose_action">Выберите действие</string>
+    <string name="add_to_favorites">Добавить в избранное</string>
+    <string name="to_share">Поделиться</string>
+    <string name="to_hide">Скрыть</string>
 
 </resources>

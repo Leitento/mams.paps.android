@@ -1,7 +1,8 @@
 package com.gomaping.navigation.ui.events.repository
 
 import com.gomaping.navigation.ui.events.model.EventModel
+import kotlinx.coroutines.flow.Flow
 
 interface EventRepository  {
-    fun getEvents(): List<EventModel>
+   suspend fun getEvents(): Flow<List<EventModel>>
 }

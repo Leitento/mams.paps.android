@@ -1,6 +1,8 @@
 package com.gomaping.navigation.ui.events.repository
 
 import com.gomaping.navigation.ui.events.model.EventModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class EventRepositoryImpl: EventRepository {
     private var lastId = 0L
@@ -66,7 +68,7 @@ class EventRepositoryImpl: EventRepository {
     init {
         lastId = data.last().id
     }
-    override fun getEvents(): List<EventModel> {
-        return data
+    override suspend fun getEvents(): Flow<List<EventModel>>  = flow{
+        emit(data)
     }
 }

@@ -1,15 +1,12 @@
 package com.gomaping.navigation.ui.events.repository
 
 import android.content.Context
-import com.gomaping.GoMapingApplication
 import com.gomaping.R
 import com.gomaping.navigation.ui.events.model.EventFilterCheckBox
 import com.gomaping.navigation.ui.events.model.EventFilterMain
 import com.gomaping.navigation.ui.events.model.Filter
 
-class FilterEventRepositoryImpl: FilterEventRepository {
-    private val context: Context = GoMapingApplication.applicationContext()
-
+class FilterEventRepositoryImpl(private  val context: Context): FilterEventRepository {
 
     override fun getMainFilter(): List<EventFilterMain> {
         return listOf(

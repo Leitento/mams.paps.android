@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.databinding.FragmentEventsBinding
@@ -12,8 +13,6 @@ import com.gomaping.navigation.ui.events.adapter.FiltersAdapter
 import com.gomaping.navigation.ui.events.adapter.OnClickListener
 import com.gomaping.navigation.ui.events.model.Filter
 import com.google.android.material.datepicker.MaterialDatePicker
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -21,30 +20,29 @@ import java.util.Locale
 class EventsFragment : Fragment(R.layout.fragment_events) {
 
     private val binding by viewBinding(FragmentEventsBinding::bind)
-    private val viewModel: EventsViewModel by viewModels()
-    private val checkedItems = mutableListOf<Filter?>()
+    private val viewModel: EventsViewModel by viewModels { EventsViewModel.Factory }
 
     private val adapter: EventsAdapter by lazy {
         EventsAdapter {
-
+            DialogChooseAction(requireContext()).show()
         }
     }
     private val adapterFilter: FiltersAdapter by lazy {
         FiltersAdapter(object : OnClickListener {
             override fun OnDelete(position: Int) {
-                val filter = checkedItems[position]
+                val filter = viewModel.getFilterByPosition(position)
                 filter?.let {
                     saveMap(it)
-                    checkedItems.removeAt(position)
+                    viewModel.removeFilterAt(position)
                 }
                 if (filter == null) {
-                    checkedItems.clear()
-                    SharedPrefUtils.ClearAll(requireContext())
+                    viewModel.clearFilter()
+                    viewModel.clearAll()
                 }
-                if (checkedItems.size == 1) {
-                    checkedItems.clear()
+                if (viewModel.getFilterSize() == 1) {
+                    viewModel.clearFilter()
                 }
-                adapterFilter.submitList(checkedItems.toList())
+                adapterFilter.submitList(viewModel.getFilter())
             }
         })
     }
@@ -54,7 +52,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         binding.recyclerEvent.adapter = adapter
         binding.recyclerView.adapter = adapterFilter
 
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch {
             viewModel.events.collect {
                 adapter.submitList(it)
             }
@@ -87,11 +85,11 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     }
 
     private fun saveMap(filter: Filter) {
-        val filterMap = SharedPrefUtils.loadFilters(requireContext()).toMutableMap()
+        val filterMap = viewModel.loadSharePref().toMutableMap()
         val listForKey = filterMap[filter] ?: mutableListOf()
         listForKey.forEach { it.isChecked = false }
         filterMap[filter] = listForKey
-        SharedPrefUtils.saveFilters(requireContext(), filterMap)
+        viewModel.saveSharedPref(filterMap)
     }
 
     private fun navigateToFilters() {
@@ -102,30 +100,30 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     }
 
     private fun observeFilter() {
-        val filterMap = SharedPrefUtils.loadFilters(requireContext())
-        checkedItems.clear()
+        val filterMap = viewModel.loadSharePref().toMutableMap()
+        viewModel.clearFilter()
         filterMap.forEach { (filter, checkBoxes) ->
             val hasSelected = checkBoxes.any { it.isChecked }
             if (hasSelected) {
-                checkedItems.add(filter)
+                viewModel.addFilter(filter)
             }
         }
 
-        if (checkedItems.isNotEmpty()) {
-            checkedItems.sortedWith(compareBy { it?.ordinal })
-            checkedItems.add(0, null)
-            adapterFilter.submitList(checkedItems.toList())
+        if (viewModel.getFilter().isNotEmpty()) {
+            viewModel.getFilter().sortedWith(compareBy { it?.ordinal })
+            viewModel.addFilterToFirstPosition()
+            adapterFilter.submitList(viewModel.getFilter())
         }
 
-        if (checkedItems.size == 0) {
-            checkedItems.clear()
-            adapterFilter.submitList(checkedItems.toList())
+        if (viewModel.getFilterSize() == 0) {
+            viewModel.clearFilter()
+            adapterFilter.submitList(viewModel.getFilter())
         }
     }
 
     override fun onDestroy() {
+        viewModel.clearAll()
         super.onDestroy()
-        SharedPrefUtils.ClearAll(requireContext())
     }
 
     companion object {
