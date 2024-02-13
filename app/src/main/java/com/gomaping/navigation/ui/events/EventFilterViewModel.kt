@@ -23,6 +23,8 @@ class EventFilterViewModel(
         return repository.getMainFilter()
     }
 
+
+
     fun getFilters(filter: Filter): List<EventFilterCheckBox> {
         return repository.getFilters(filter)
     }
