@@ -24,7 +24,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
 
     private val adapter: EventsAdapter by lazy {
         EventsAdapter {
-            DialogChooseAction(requireContext()).show()
+            DialogChooseAction().show(childFragmentManager, "Action")
         }
     }
     private val adapterFilter: FiltersAdapter by lazy {
