@@ -3,6 +3,7 @@ package com.gomaping.navigation.ui.events
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -11,6 +12,10 @@ import com.gomaping.databinding.FragmentEventsBinding
 import com.gomaping.navigation.ui.events.adapter.EventsAdapter
 import com.gomaping.navigation.ui.events.adapter.FiltersAdapter
 import com.gomaping.navigation.ui.events.adapter.OnClickListener
+import com.gomaping.navigation.ui.events.adapter.OnEventClickListener
+import com.gomaping.navigation.ui.events.eventcar.EventCardFragment
+import com.gomaping.navigation.ui.events.eventcar.adapter.CardImageAdapter
+import com.gomaping.navigation.ui.events.model.EventModel
 import com.gomaping.navigation.ui.events.model.Filter
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
@@ -23,9 +28,16 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     private val viewModel: EventsViewModel by viewModels { EventsViewModel.Factory }
 
     private val adapter: EventsAdapter by lazy {
-        EventsAdapter {
-            DialogChooseAction(requireContext()).show()
-        }
+        EventsAdapter(object : OnEventClickListener{
+            override fun OnAction() {
+                DialogChooseAction(requireContext()).show()
+            }
+
+            override fun OnEventCardView(event: EventModel) {
+               navigateToCardEvent()
+            }
+
+        })
     }
     private val adapterFilter: FiltersAdapter by lazy {
         FiltersAdapter(object : OnClickListener {
@@ -66,6 +78,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         binding.filter.setOnClickListener {
             navigateToFilters()
         }
+
     }
 
     private fun createDatePicker() {
@@ -95,6 +108,13 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     private fun navigateToFilters() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, EventsFilterFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun navigateToCardEvent(){
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, EventCardFragment())
         transaction.addToBackStack(null)
         transaction.commit()
     }

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    tools:context=".navigation.ui.events.eventcar.EventCardFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/event_card_title"
+            app:titleTextAppearance="@style/TextAppearance.App.ToolbarTitle" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/top_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="426dp"
+                    android:background="@drawable/background_view_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/vpImages"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </androidx.viewpager2.widget.ViewPager2>
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/image"
+                            android:translationY="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:tabBackground="@drawable/viewpager_indicators"
+                            app:tabGravity="center"
+                            app:tabIndicatorHeight="0dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/card_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@string/title_event"
+                    android:textSize="26sp"
+                    app:layout_constraintEnd_toEndOf="@id/card_image"
+                    app:layout_constraintStart_toStartOf="@id/card_image"
+                    app:layout_constraintTop_toBottomOf="@id/card_image" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Цирк"
+                    android:textColor="#275A8A"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/card_title"
+                    app:layout_constraintTop_toBottomOf="@id/card_title" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10км"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                    app:layout_constraintEnd_toEndOf="@+id/card_title"
+                    app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+                <TextView
+                    android:id="@+id/reviews_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/textview_background"
+                    android:drawablePadding="4dp"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/reviews_event"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:drawableEndCompat="@drawable/ic_star"
+                    app:layout_constraintStart_toStartOf="@id/tv_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="110 отзывов"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviews_event"
+                    app:layout_constraintStart_toEndOf="@+id/reviews_event"
+                    app:layout_constraintTop_toTopOf="@+id/reviews_event" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Закрыто до 11:00"
+                    android:textColor="#E6716F"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/car_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:drawablePadding="4dp"
+
+                    android:gravity="center"
+                    android:text="1 ч 59 мин"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/ic_car"
+                    app:layout_constraintStart_toStartOf="@+id/reviews_event"
+                    app:layout_constraintTop_toBottomOf="@+id/reviews_event" />
+
+                <TextView
+                    android:id="@+id/on_foot_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="1 ч 59 мин"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/ic_people"
+                    app:layout_constraintBottom_toBottomOf="@+id/car_event"
+                    app:layout_constraintEnd_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toTopOf="@+id/car_event" />
+
+                <TextView
+                    android:id="@+id/bus_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="1 ч 59 мин"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/ic_bus"
+                    app:layout_constraintBottom_toBottomOf="@+id/car_event"
+                    app:layout_constraintEnd_toStartOf="@+id/on_foot_event"
+                    app:layout_constraintStart_toEndOf="@+id/car_event"
+                    app:layout_constraintTop_toTopOf="@+id/car_event" />
+
+                <ImageView
+                    android:id="@+id/button_route"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_route"
+                    app:layout_constraintStart_toStartOf="@+id/car_event"
+                    app:layout_constraintTop_toBottomOf="@+id/car_event" />
+
+                <ImageView
+                    android:id="@+id/button_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_flags"
+                    app:layout_constraintBottom_toBottomOf="@+id/button_route"
+                    app:layout_constraintStart_toEndOf="@+id/button_route"
+                    app:layout_constraintTop_toTopOf="@+id/button_route" />
+
+                <ImageView
+                    android:id="@+id/button_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_share"
+                    app:layout_constraintBottom_toBottomOf="@+id/button_flag"
+                    app:layout_constraintStart_toEndOf="@+id/button_flag"
+                    app:layout_constraintTop_toTopOf="@+id/button_flag" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="20dp"> <!-- Радиус округления углов -->
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabTextColor="#4F4F4F"
+                    android:background="@color/white"
+                    android:minHeight="?attr/actionBarSize" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager_fragment"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

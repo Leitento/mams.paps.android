@@ -31,17 +31,17 @@
 
         <TextView
             android:id="@+id/title_event"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="@string/title_event"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:ellipsize="end"
-            android:maxLines="2"
+            app:layout_constraintEnd_toStartOf="@id/action_event"
             app:layout_constraintStart_toEndOf="@id/card_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/action_event"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/action_event"
@@ -65,14 +65,14 @@
 
         <TextView
             android:id="@+id/description_event"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:ellipsize="end"
+            android:maxLines="4"
             android:text="@string/descriptions"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:maxLines="4"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/link_event"
@@ -98,49 +98,36 @@
             app:layout_constraintStart_toStartOf="@id/schedule_event"
             app:layout_constraintTop_toBottomOf="@id/schedule_event" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_reviews"
+
+        <TextView
+            android:id="@+id/reviews_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:backgroundTint="#E6716F"
+            android:background="@drawable/textview_background"
+            android:drawablePadding="4dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/reviews_event"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:drawableEndCompat="@drawable/ic_star"
             app:layout_constraintBottom_toBottomOf="@+id/card_image"
-            app:layout_constraintStart_toEndOf="@id/card_image">
+            app:layout_constraintStart_toStartOf="@+id/break_event" />
 
-            <TextView
-                android:id="@+id/reviews_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:drawableEndCompat="@drawable/ic_star"
-                android:drawablePadding="4dp"
-                android:paddingHorizontal="8dp"
-                android:text="@string/reviews_event"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_time"
+        <TextView
+            android:id="@+id/car_time_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/card_reviews"
-            app:layout_constraintStart_toEndOf="@+id/card_reviews"
-            app:layout_constraintTop_toTopOf="@+id/card_reviews"
-            app:strokeWidth="0dp">
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="@string/car_time_event"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_car"
+            app:layout_constraintBottom_toBottomOf="@+id/reviews_event"
+            app:layout_constraintStart_toEndOf="@+id/reviews_event"
+            app:layout_constraintTop_toTopOf="@+id/reviews_event" />
 
-            <TextView
-                android:id="@+id/car_time_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:drawableStartCompat="@drawable/ic_car"
-                android:drawablePadding="4dp"
-                android:gravity="center"
-                android:text="@string/car_time_event"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/distance_event"
@@ -150,9 +137,9 @@
             android:text="@string/distance"
             android:textColor="#4F4F4F"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/card_time"
-            app:layout_constraintStart_toEndOf="@id/card_time"
-            app:layout_constraintTop_toTopOf="@+id/card_time" />
+            app:layout_constraintBottom_toBottomOf="@+id/car_time_event"
+            app:layout_constraintStart_toEndOf="@id/car_time_event"
+            app:layout_constraintTop_toTopOf="@+id/car_time_event" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

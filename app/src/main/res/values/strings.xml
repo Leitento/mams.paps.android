@@ -47,7 +47,7 @@
     <string name="profile_menu_log_out">Выйти из аккаунта</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_event">Цирк Никулина \nна Цветном бульваре</string>
+    <string name="title_event">Цирк Никулина на Цветном бульваре</string>
     <string name="image">Image</string>
     <string name="circus">Цирк</string>
     <string name="descriptions">Самый старый цирк в нашей стране, известный далеко за её пределами. Сильнейшие мастера....</string>
@@ -75,4 +75,7 @@
     <string name="to_share">Поделиться</string>
     <string name="to_hide">Скрыть</string>
 
+    <string name="event_card_title">Событие</string>
+    <string name="event_title">Фильтр: События и мероприятие</string>
+    <string name="event_reviewer">Cтарый Московский цирк на Цветном бульваре один из самых старейших цирков России. Сто с лишним лет назад, в 1880 году, это здание на Цветном бульваре построила для цирка Альберта Саламонского контора купца Данилова. Говорят, первый рубль, вырученный за билет, Саламонский вставил в рамку и повесил в кассе. Когда 20 октября 1880 года цирк принял первых зрителей, там было пять рядов кресел, ложи, бельэтаж, вторые места с деревянными ненумерованными лавками и стоячая галерея. Потом здание не раз подстраивалось и достраивалось, но весь свой долгий век  служило цирку.</string>
 </resources>
