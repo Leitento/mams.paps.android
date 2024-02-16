@@ -22,6 +22,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
@@ -133,6 +134,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 }
 
                 ACTION_BUTTON_ID_EVENTS -> {
+                    val intent = Intent(this, NavigationActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        putExtra(NavigationActivity.ARG_NAVIGATE_TO, R.id.navigation_nearby)
+                    }
+                    startActivity(intent)
+                    finish()
                     // TODO: Open events screen
                 }
 
@@ -240,6 +247,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
     }
 
+    fun replaceFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
     companion object {
         private const val ACTION_BUTTON_ID_NAVIGATION = "navigation"
         private const val ACTION_BUTTON_ID_EVENTS = "events"

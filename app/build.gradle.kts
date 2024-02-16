@@ -25,7 +25,7 @@ android {
 
         buildConfigField(
             "String", "MAPKIT_API_KEY",
-            "\"${properties.getProperty("MAPKIT_API_KEY", "")}\""
+            "\"${properties.getProperty("MAPKIT_API_KEY", "cfa98d4c-8078-4a07-ac03-6e01832beaf6")}\""
         )
     }
 
@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.json)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
