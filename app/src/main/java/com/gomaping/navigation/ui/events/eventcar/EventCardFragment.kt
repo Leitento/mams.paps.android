@@ -3,6 +3,7 @@ package com.gomaping.navigation.ui.events.eventcar
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.databinding.FragmentEventCardBinding
@@ -19,7 +20,8 @@ class EventCardFragment : Fragment(R.layout.fragment_event_card) {
     private val tabList = listOf(
         "Обзор",
         "Фото",
-        "Отзывы"
+        "Отзывы",
+        "Часы работы"
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,9 +35,19 @@ class EventCardFragment : Fragment(R.layout.fragment_event_card) {
         binding.toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+
+        binding.vpImages.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                // Обновляем счетчик
+                val totalPages = binding.vpImages.adapter?.itemCount ?:  0
+                val couter = "${position +  1} / $totalPages"
+                binding.pageCounter.text = couter
+            }
+        })
     }
 
-    fun getPhoto(): List<ImageModel> {
+    private fun getPhoto(): List<ImageModel> {
         return listOf(
             ImageModel(R.drawable.tsirk_nikulina0),
             ImageModel(R.drawable.tsirk_nikulina1),

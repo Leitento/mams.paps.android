@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="18dp"
+    app:strokeColor="@color/orange"
+    app:strokeWidth="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/review_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_background"
+            android:gravity="center"
+            android:paddingHorizontal="8dp"
+            android:text="K"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/review_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/review_icon"
+            app:layout_constraintStart_toEndOf="@id/review_icon"
+            app:layout_constraintTop_toTopOf="@+id/review_icon"
+            tools:text="Олеся" />
+
+        <ImageView
+            android:id="@+id/star_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/review_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/review_icon" />
+
+        <ImageView
+            android:id="@+id/star_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/review_icon"
+            app:layout_constraintEnd_toStartOf="@id/star_5"
+            app:layout_constraintTop_toTopOf="@+id/review_icon" />
+
+        <ImageView
+            android:id="@+id/star_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/review_icon"
+            app:layout_constraintEnd_toStartOf="@id/star_4"
+            app:layout_constraintTop_toTopOf="@+id/review_icon" />
+
+        <ImageView
+            android:id="@+id/star_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/review_icon"
+            app:layout_constraintEnd_toStartOf="@id/star_3"
+            app:layout_constraintTop_toTopOf="@+id/review_icon" />
+
+        <ImageView
+            android:id="@+id/star_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/review_icon"
+            app:layout_constraintEnd_toStartOf="@id/star_2"
+            app:layout_constraintTop_toTopOf="@+id/review_icon" />
+
+        <TextView
+            android:id="@+id/review_event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="#4F4F4F"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/review_icon"
+            app:layout_constraintTop_toBottomOf="@id/review_icon"
+            tools:text="12 ноября 2023" />
+
+        <TextView
+            android:id="@+id/review_event_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#4F4F4F"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/review_event_date"
+            app:layout_constraintTop_toBottomOf="@id/review_event_date"
+            tools:text="Отличное место для прогулки и отдыха с семьёй. Единственное не попали на фильмы в медиоцентре, младшей дочери 3 года и ей нельзя, а детских игровых где можно оставить ребёнка на час под присмотром нет. В остальном все круто." />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/review_photo"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/review_event_text"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_event_review_photo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
