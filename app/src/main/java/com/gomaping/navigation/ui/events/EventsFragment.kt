@@ -2,6 +2,7 @@ package com.gomaping.navigation.ui.events
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -28,13 +29,12 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     private val adapter: EventsAdapter by lazy {
         EventsAdapter(object : OnEventClickListener {
             override fun OnAction() {
-                DialogChooseAction().show(childFragmentManager, "Action")
+                DialogFragment().show(childFragmentManager, "Action")
             }
 
             override fun OnEventCardView(event: EventModel) {
                 navigateToCardEvent()
             }
-
         })
     }
     private val adapterFilter: FiltersAdapter by lazy {
@@ -110,7 +110,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         transaction.commit()
     }
 
-    private fun navigateToCardEvent(){
+    private fun navigateToCardEvent() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, EventCardFragment())
         transaction.addToBackStack(null)
