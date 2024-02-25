@@ -17,9 +17,7 @@ class CardImageReviewAdapter (private val photo: List<ImageModel>) :
     }
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
-        holder.itemView.findViewById<ImageView>(R.id.imageView).let {
-            it.setImageResource(photo[position].iconResId)
-        }
+        holder.itemView.findViewById<ImageView>(R.id.imageView).setImageResource(photo[position].iconResId)
     }
 
     override fun getItemCount(): Int {

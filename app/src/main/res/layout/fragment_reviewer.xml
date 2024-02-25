@@ -40,7 +40,7 @@
                 android:layout_weight="1"
                 android:drawablePadding="6dp"
                 android:gravity="center_vertical"
-                android:text="Стоимость"
+                android:text="@string/event_price_text"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_price" />
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="1500₽ - 5000₽"
+                android:text="@string/event_price"
                 android:textColor="#4F4F4F"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:drawablePadding="6dp"
                 android:gravity="center_vertical"
-                android:text="Сайт"
+                android:text="@string/event_lint_text"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_world" />
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="6dp"
                 android:gravity="center_vertical"
-                android:text="circusnikulin.ru"
+                android:text="@string/event_link"
                 android:textColor="#4F4F4F"
                 android:textSize="16sp"
                 app:drawableEndCompat="@drawable/ic_link" />
@@ -112,7 +112,7 @@
                 android:layout_weight="1"
                 android:drawablePadding="6dp"
                 android:gravity="center_vertical"
-                android:text="Поддержка"
+                android:text="@string/event_support"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_phone" />
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="mamspaps@gmaiil.com"
+                android:text="@string/event_email"
                 android:textColor="#275A8A"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -147,7 +147,7 @@
                 android:layout_weight="1"
                 android:drawablePadding="6dp"
                 android:gravity="center_vertical"
-                android:text="Адресс"
+                android:text="@string/event_adress_text"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:drawableStartCompat="@drawable/ic_adress" />
@@ -156,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Цветной бул., 13, Москва"
+                android:text="@string/event_adress"
                 android:textColor="#4F4F4F"
                 android:textSize="16sp" />
         </LinearLayout>

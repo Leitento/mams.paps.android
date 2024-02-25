@@ -79,7 +79,7 @@
     <string name="event_title">Фильтр: События и мероприятие</string>
     <string name="event_reviewer">Cтарый Московский цирк на Цветном бульваре один из самых старейших цирков России. Сто с лишним лет назад, в 1880 году, это здание на Цветном бульваре построила для цирка Альберта Саламонского контора купца Данилова. Говорят, первый рубль, вырученный за билет, Саламонский вставил в рамку и повесил в кассе. Когда 20 октября 1880 года цирк принял первых зрителей, там было пять рядов кресел, ложи, бельэтаж, вторые места с деревянными ненумерованными лавками и стоячая галерея. Потом здание не раз подстраивалось и достраивалось, но весь свой долгий век  служило цирку.</string>
     <string name="event_monday">Понедельник</string>
-    <string name="event_time_start">11:00 - 19:00</string>
+    <string name="event_time_start">11:00 – 19:00</string>
     <string name="event_tuesday">Вторник</string>
     <string name="event_wennesday">Среда</string>
     <string name="event_thursday">Четверг</string>
@@ -87,7 +87,15 @@
     <string name="event_saturday">Субботa</string>
     <string name="event_sunday">Воскресенье</string>
     <string name="event_break">Перерыв</string>
-    <string name="event_time_break">13:00 - 14:00</string>
+    <string name="event_time_break">13:00 – 14:00</string>
     <string name="leave_review">Оставить отзыв</string>
     <string name="total_event_count">100 отзывов</string>
+    <string name="event_adress">Цветной бул., 13, Москва</string>
+    <string name="event_adress_text">Адресс</string>
+    <string name="event_email">mamspaps@gmaiil.com</string>
+    <string name="event_support">Поддержка</string>
+    <string name="event_link">circusnikulin.ru</string>
+    <string name="event_lint_text">Сайт</string>
+    <string name="event_price">1500₽ - 5000₽</string>
+    <string name="event_price_text">Стоимость</string>
 </resources>
