@@ -26,13 +26,13 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     private val viewModel: EventsViewModel by viewModels { EventsViewModel.Factory }
 
     private val adapter: EventsAdapter by lazy {
-        EventsAdapter(object : OnEventClickListener{
+        EventsAdapter(object : OnEventClickListener {
             override fun OnAction() {
-                DialogChooseAction(requireContext()).show()
+                DialogChooseAction().show(childFragmentManager, "Action")
             }
 
             override fun OnEventCardView(event: EventModel) {
-               navigateToCardEvent()
+                navigateToCardEvent()
             }
 
         })

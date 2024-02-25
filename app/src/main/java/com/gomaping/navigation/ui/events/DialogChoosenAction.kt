@@ -1,23 +1,35 @@
 package com.gomaping.navigation.ui.events
 
-import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.gomaping.databinding.ItemChooseActionBinding
 
-class DialogChooseAction (context: Context) :
-    Dialog(context) {
+class DialogChooseAction: DialogFragment() {
+
+    private var _binding: ItemChooseActionBinding? = null
+    private val binding get() = _binding!!
+
     init {
-        setCancelable(false)
+        isCancelable = false
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ItemChooseActionBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        window?.setGravity(Gravity.CENTER_HORIZONTAL)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = ItemChooseActionBinding.inflate(inflater, container, false)
         binding.ivClose.setOnClickListener {
             dismiss()
         }
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
