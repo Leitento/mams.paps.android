@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gomaping.R
 import com.gomaping.databinding.ItemEventReviewBinding
+import com.gomaping.navigation.ui.events.eventcar.TypeReview
 import com.gomaping.navigation.ui.events.model.EventReview
 import com.yandex.runtime.Runtime
 
@@ -28,10 +28,6 @@ class ReviewEventAdapter :
         val eventReview = getItem(position)
         if (eventReview.reviewPhoto.isNotEmpty()) {
             val adapter = CardImageReviewAdapter(eventReview.reviewPhoto)
-            //  val layoutManager = GridLayoutManager(holder.itemView.context,1, GridLayoutManager.HORIZONTAL, false)
-            val layoutManager =
-                LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            holder.binding.reviewPhoto.layoutManager = layoutManager
             holder.binding.reviewPhoto.adapter = adapter
         }
         holder.bind(eventReview)
@@ -50,30 +46,29 @@ class ReviewEventAdapter :
                     reviewPhoto.visibility = View.GONE
                 }
                 when (eventReview.rating) {
-                    1 -> {
+                    TypeReview.DISGUSTING -> {
                         star1.setColorStar(itemView)
                     }
 
-                    2 -> {
+                    TypeReview.BADLY -> {
                         star1.setColorStar(itemView)
                         star2.setColorStar(itemView)
                     }
 
-                    3 -> {
-
+                    TypeReview.NOT_BAD -> {
                         star1.setColorStar(itemView)
                         star2.setColorStar(itemView)
                         star3.setColorStar(itemView)
                     }
 
-                    4 -> {
+                    TypeReview.GOOD -> {
                         star1.setColorStar(itemView)
                         star2.setColorStar(itemView)
                         star3.setColorStar(itemView)
                         star4.setColorStar(itemView)
                     }
 
-                    5 -> {
+                    TypeReview.EXCELLENT -> {
                         star1.setColorStar(itemView)
                         star2.setColorStar(itemView)
                         star3.setColorStar(itemView)

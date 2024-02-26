@@ -14,4 +14,8 @@ class ScheduleEventFragment : Fragment(R.layout.fragment_schedule_event) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
+    companion object {
+        fun newInstance() = ScheduleEventFragment()
+    }
 }

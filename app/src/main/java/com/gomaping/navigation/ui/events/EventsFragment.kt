@@ -29,7 +29,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     private val adapter: EventsAdapter by lazy {
         EventsAdapter(object : OnEventClickListener {
             override fun OnAction() {
-                DialogFragment().show(childFragmentManager, "Action")
+                DialogFragment().show(childFragmentManager, ACTION)
             }
 
             override fun OnEventCardView(event: EventModel) {
@@ -145,6 +145,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     }
 
     companion object {
+        private const val ACTION = "Action"
         private const val TAG = ""
         private const val LANGUAGE = "ru"
         private const val PATTERN = "dd.MM.yyyy"

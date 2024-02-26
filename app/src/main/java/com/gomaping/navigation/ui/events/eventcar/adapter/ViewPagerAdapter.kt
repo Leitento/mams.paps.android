@@ -11,10 +11,10 @@ import com.gomaping.navigation.ui.events.eventcar.ScheduleEventFragment
 class ViewPagerAdapter(fragmentAdapter: EventCardFragment) : FragmentStateAdapter(fragmentAdapter) {
 
     private val fragments = listOf(
-        ReviewerFragment(),
-        PhotoReviewEventFragment(),
-        ReviewsEventFragment(),
-        ScheduleEventFragment(),
+        ReviewerFragment.newInstance(),
+        PhotoReviewEventFragment.newInstance(),
+        ReviewsEventFragment.newInstance(),
+        ScheduleEventFragment.newInstance(),
     )
 
     override fun getItemCount(): Int = fragments.size
