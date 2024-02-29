@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcar
+package com.gomaping.navigation.ui.events.eventcard
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.databinding.FragmentReviewsEventBinding
-import com.gomaping.navigation.ui.events.eventcar.adapter.ReviewEventAdapter
+import com.gomaping.navigation.ui.events.eventcard.adapter.ReviewEventAdapter
 import com.gomaping.navigation.ui.events.model.EventReview
 
 class ReviewsEventFragment : Fragment(R.layout.fragment_reviews_event) {

@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcar
+package com.gomaping.navigation.ui.events.eventcard
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.databinding.FragmentPhotoReviewEventBinding
-import com.gomaping.navigation.ui.events.eventcar.adapter.CardReviewAdapter
+import com.gomaping.navigation.ui.events.eventcard.adapter.CardReviewAdapter
 
 class PhotoReviewEventFragment : Fragment(R.layout.fragment_photo_review_event) {
     private val binding by viewBinding(FragmentPhotoReviewEventBinding::bind)

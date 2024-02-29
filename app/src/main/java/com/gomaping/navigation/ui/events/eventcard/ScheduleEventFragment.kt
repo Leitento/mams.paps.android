@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcar
+package com.gomaping.navigation.ui.events.eventcard
 
 import android.os.Bundle
 import android.view.View

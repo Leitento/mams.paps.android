@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcar
+package com.gomaping.navigation.ui.events.eventcard
 
 import androidx.annotation.DrawableRes
 

@@ -1,7 +1,7 @@
 package com.gomaping.navigation.ui.events.model
 
-import com.gomaping.navigation.ui.events.eventcar.ImageModel
-import com.gomaping.navigation.ui.events.eventcar.TypeReview
+import com.gomaping.navigation.ui.events.eventcard.ImageModel
+import com.gomaping.navigation.ui.events.eventcard.TypeReview
 
 data class EventReview(
     val id: Int,

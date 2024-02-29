@@ -1,12 +1,12 @@
-package com.gomaping.navigation.ui.events.eventcar.adapter
+package com.gomaping.navigation.ui.events.eventcard.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.gomaping.navigation.ui.events.eventcar.EventCardFragment
-import com.gomaping.navigation.ui.events.eventcar.PhotoReviewEventFragment
-import com.gomaping.navigation.ui.events.eventcar.ReviewerFragment
-import com.gomaping.navigation.ui.events.eventcar.ReviewsEventFragment
-import com.gomaping.navigation.ui.events.eventcar.ScheduleEventFragment
+import com.gomaping.navigation.ui.events.eventcard.EventCardFragment
+import com.gomaping.navigation.ui.events.eventcard.PhotoReviewEventFragment
+import com.gomaping.navigation.ui.events.eventcard.ReviewerFragment
+import com.gomaping.navigation.ui.events.eventcard.ReviewsEventFragment
+import com.gomaping.navigation.ui.events.eventcard.ScheduleEventFragment
 
 class ViewPagerAdapter(fragmentAdapter: EventCardFragment) : FragmentStateAdapter(fragmentAdapter) {
 

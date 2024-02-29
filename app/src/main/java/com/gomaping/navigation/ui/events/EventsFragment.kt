@@ -13,7 +13,7 @@ import com.gomaping.navigation.ui.events.adapter.EventsAdapter
 import com.gomaping.navigation.ui.events.adapter.FiltersAdapter
 import com.gomaping.navigation.ui.events.adapter.OnClickListener
 import com.gomaping.navigation.ui.events.adapter.OnEventClickListener
-import com.gomaping.navigation.ui.events.eventcar.EventCardFragment
+import com.gomaping.navigation.ui.events.eventcard.EventCardFragment
 import com.gomaping.navigation.ui.events.model.EventModel
 import com.gomaping.navigation.ui.events.model.Filter
 import com.google.android.material.datepicker.MaterialDatePicker

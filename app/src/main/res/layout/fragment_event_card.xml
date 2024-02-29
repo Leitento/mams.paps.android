@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/orange"
     android:orientation="vertical"
-    tools:context=".navigation.ui.events.eventcar.EventCardFragment">
+    tools:context=".navigation.ui.events.eventcard.EventCardFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

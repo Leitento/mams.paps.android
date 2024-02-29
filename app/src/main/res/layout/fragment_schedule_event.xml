@@ -7,7 +7,7 @@
     android:layout_marginHorizontal="16dp"
     android:background="@android:color/transparent"
     android:orientation="vertical"
-    tools:context=".navigation.ui.events.eventcar.ScheduleEventFragment">
+    tools:context=".navigation.ui.events.eventcard.ScheduleEventFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

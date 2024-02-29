@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcar.adapter
+package com.gomaping.navigation.ui.events.eventcard.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.gomaping.R
-import com.gomaping.navigation.ui.events.eventcar.ImageModel
+import com.gomaping.navigation.ui.events.eventcard.ImageModel
 
 class CardImageReviewAdapter (private val photo: List<ImageModel>) :
     RecyclerView.Adapter<CardImageReviewAdapter.ImageHolder>() {

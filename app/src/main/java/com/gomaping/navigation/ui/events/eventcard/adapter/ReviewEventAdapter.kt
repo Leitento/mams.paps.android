@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcar.adapter
+package com.gomaping.navigation.ui.events.eventcard.adapter
 
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gomaping.R
 import com.gomaping.databinding.ItemEventReviewBinding
-import com.gomaping.navigation.ui.events.eventcar.TypeReview
+import com.gomaping.navigation.ui.events.eventcard.TypeReview
 import com.gomaping.navigation.ui.events.model.EventReview
 import com.yandex.runtime.Runtime
 

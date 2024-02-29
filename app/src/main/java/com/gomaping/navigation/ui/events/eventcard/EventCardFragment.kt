@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcar
+package com.gomaping.navigation.ui.events.eventcard
 
 import android.os.Bundle
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.databinding.FragmentEventCardBinding
-import com.gomaping.navigation.ui.events.eventcar.adapter.CardImageAdapter
-import com.gomaping.navigation.ui.events.eventcar.adapter.ViewPagerAdapter
+import com.gomaping.navigation.ui.events.eventcard.adapter.CardImageAdapter
+import com.gomaping.navigation.ui.events.eventcard.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 
