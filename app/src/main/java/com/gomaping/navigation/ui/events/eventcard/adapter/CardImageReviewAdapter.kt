@@ -12,12 +12,12 @@ class CardImageReviewAdapter (private val photo: List<ImageModel>) :
     RecyclerView.Adapter<CardImageReviewAdapter.ImageHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.card_image_view_pager, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_event_review_photo, parent, false)
         return ImageHolder(view)
     }
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
-        holder.itemView.findViewById<ImageView>(R.id.imageView).setImageResource(photo[position].iconResId)
+        holder.itemView.findViewById<ImageView>(R.id.image_review_card).setImageResource(photo[position].iconResId)
     }
 
     override fun getItemCount(): Int {

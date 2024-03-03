@@ -26,10 +26,6 @@ class ReviewEventAdapter :
 
     override fun onBindViewHolder(holder: EventReviewViewHolder, position: Int) {
         val eventReview = getItem(position)
-        if (eventReview.reviewPhoto.isNotEmpty()) {
-            val adapter = CardImageReviewAdapter(eventReview.reviewPhoto)
-            holder.binding.reviewPhoto.adapter = adapter
-        }
         holder.bind(eventReview)
     }
 
@@ -42,6 +38,10 @@ class ReviewEventAdapter :
                 reviewName.text = eventReview.name
                 reviewEventDate.text = eventReview.reviewDate
                 reviewEventText.text = eventReview.reviewText
+                if (eventReview.reviewPhoto.isNotEmpty()) {
+                    val adapter = CardImageReviewAdapter(eventReview.reviewPhoto)
+                    binding.reviewPhoto.adapter = adapter
+                }
                 if (eventReview.reviewPhoto.isEmpty()) {
                     reviewPhoto.visibility = View.GONE
                 }
