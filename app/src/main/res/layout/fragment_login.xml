@@ -111,7 +111,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/auth_screen_spacing"
         android:text="@string/auth_forgot_password"
-        app:layout_constraintBottom_toTopOf="@id/button_continue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_text_field" />
 
@@ -131,9 +130,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/auth_screen_spacing"
-        android:layout_marginBottom="@dimen/common_spacing"
+        android:layout_marginTop="32dp"
         android:text="@string/auth_continue"
-        app:layout_constraintBottom_toTopOf="@id/button_log_in" />
+        app:layout_constraintStart_toStartOf="@+id/button_forgot_password"
+        app:layout_constraintTop_toBottomOf="@+id/button_forgot_password" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_log_in"
@@ -141,8 +141,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/auth_screen_spacing"
-        android:layout_marginBottom="@dimen/auth_screen_spacing"
+        android:layout_marginTop="16dp"
         android:text="@string/auth_log_in"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/button_continue"
+        app:layout_constraintTop_toBottomOf="@+id/button_continue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

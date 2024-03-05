@@ -2,6 +2,7 @@ package com.gomaping.navigation.ui.events
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +12,9 @@ import com.gomaping.databinding.FragmentEventsBinding
 import com.gomaping.navigation.ui.events.adapter.EventsAdapter
 import com.gomaping.navigation.ui.events.adapter.FiltersAdapter
 import com.gomaping.navigation.ui.events.adapter.OnClickListener
+import com.gomaping.navigation.ui.events.adapter.OnEventClickListener
+import com.gomaping.navigation.ui.events.eventcard.EventCardFragment
+import com.gomaping.navigation.ui.events.model.EventModel
 import com.gomaping.navigation.ui.events.model.Filter
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
@@ -23,9 +27,15 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     private val viewModel: EventsViewModel by viewModels { EventsViewModel.Factory }
 
     private val adapter: EventsAdapter by lazy {
-        EventsAdapter {
-            DialogChooseAction().show(childFragmentManager, "Action")
-        }
+        EventsAdapter(object : OnEventClickListener {
+            override fun OnAction() {
+                DialogFragment().show(childFragmentManager, ACTION)
+            }
+
+            override fun OnEventCardView(event: EventModel) {
+                navigateToCardEvent()
+            }
+        })
     }
     private val adapterFilter: FiltersAdapter by lazy {
         FiltersAdapter(object : OnClickListener {
@@ -66,6 +76,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         binding.filter.setOnClickListener {
             navigateToFilters()
         }
+
     }
 
     private fun createDatePicker() {
@@ -99,6 +110,13 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
         transaction.commit()
     }
 
+    private fun navigateToCardEvent() {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, EventCardFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
     private fun observeFilter() {
         val filterMap = viewModel.loadSharePref().toMutableMap()
         viewModel.clearFilter()
@@ -127,6 +145,7 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
     }
 
     companion object {
+        private const val ACTION = "Action"
         private const val TAG = ""
         private const val LANGUAGE = "ru"
         private const val PATTERN = "dd.MM.yyyy"

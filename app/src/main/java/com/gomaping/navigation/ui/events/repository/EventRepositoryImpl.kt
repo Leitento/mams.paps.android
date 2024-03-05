@@ -10,7 +10,7 @@ class EventRepositoryImpl: EventRepository {
     private val data: List<EventModel> = listOf(
         EventModel(
             id = ++lastId,
-            title = "Цирк Никулина \n на Цветном бульваре",
+            title = "Цирк Никулина на Цветном бульваре",
             link = "link",
             descriptions = "Самый старый цирк в нашей стране, известный далеко за её пределами. Сильнейшие мастера....",
             schedule = "Ежедневно 11:00 - 19:00",
@@ -21,7 +21,7 @@ class EventRepositoryImpl: EventRepository {
         ),
         EventModel(
             id = ++lastId,
-            title = "Цирк Никулина \n на Цветном бульваре",
+            title = "Цирк Никулина на Цветном бульваре",
             link = "link",
             descriptions = "Самый старый цирк в нашей стране, известный далеко за её пределами. Сильнейшие мастера....",
             schedule = "Ежедневно 11:00 - 19:00",
@@ -32,7 +32,7 @@ class EventRepositoryImpl: EventRepository {
         ),
         EventModel(
             id = ++lastId,
-            title = "Цирк Никулина \n на Цветном бульваре",
+            title = "Цирк Никулина на Цветном бульваре",
             link = "link",
             descriptions = "Самый старый цирк в нашей стране, известный далеко за её пределами. Сильнейшие мастера....",
             schedule = "Ежедневно 11:00 - 19:00",
@@ -43,7 +43,7 @@ class EventRepositoryImpl: EventRepository {
         ),
         EventModel(
             id = ++lastId,
-            title = "Цирк Никулина \n на Цветном бульваре",
+            title = "Цирк Никулина на Цветном бульваре",
             link = "link",
             descriptions = "Самый старый цирк в нашей стране, известный далеко за её пределами. Сильнейшие мастера....",
             schedule = "Ежедневно 11:00 - 19:00",
@@ -54,7 +54,7 @@ class EventRepositoryImpl: EventRepository {
         ),
         EventModel(
             id = ++lastId,
-            title = "Цирк Никулина \n на Цветном бульваре",
+            title = "Цирк Никулина на Цветном бульваре",
             link = "link",
             descriptions = "Самый старый цирк в нашей стране, известный далеко за её пределами. Сильнейшие мастера....",
             schedule = "Ежедневно 11:00 - 19:00",

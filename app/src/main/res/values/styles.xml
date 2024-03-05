@@ -32,6 +32,12 @@
         <item name="backgroundTint">#8D8D8D</item>
     </style>
 
+    <style name="CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textStyle">bold</item> <!-- Стиль текста -->
+        <item name="android:textSize">16sp</item> <!-- Размер текста -->
+        <item name="android:textColor">#4F4F4F</item>
+    </style>
+
     <style name="Widget.App.Button.Primary" parent="Widget.App.Button">
         <item name="backgroundTint">@color/white</item>
     </style>
