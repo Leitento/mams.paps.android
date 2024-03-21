@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_map_playground"
+    app:startDestination="@id/locationBottomSheetFragment">
+
+    <dialog
+        android:id="@+id/locationBottomSheetFragment"
+        android:name="com.gomaping.navigation.ui.map.bottomsheetfragment.LocationBottomSheetFragment"
+        android:label="fragment_location_bottom_sheet"
+        tools:layout="@layout/fragment_location_bottom_sheet" >
+        <action
+            android:id="@+id/action_locationBottomSheetFragment_to_locationCardFragment"
+            app:destination="@id/locationCardFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/locationCardFragment"
+        android:name="com.gomaping.navigation.ui.map.locationplaygroud.LocationCardFragment"
+        android:label="LocationCardFragment"
+        tools:layout="@layout/fragment_location_card"/>
+</navigation>

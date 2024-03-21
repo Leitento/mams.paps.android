@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,6 +19,9 @@
         android:hint="@string/hint_map_search"
         android:maxWidth="@dimen/text_field_max_width"
         app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/blue"
         app:strokeWidth="2dp" />
 
@@ -39,101 +42,150 @@
 
     </com.google.android.material.search.SearchView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_zoom_in"
-            style="@style/Widget.App.MapIconButton.Square"
-            android:layout_width="@dimen/map_button_size"
-            android:layout_height="@dimen/map_button_size"
-            android:layout_marginTop="@dimen/common_spacing"
-            android:layout_marginEnd="@dimen/common_spacing"
-            android:layout_marginBottom="@dimen/common_spacing"
-            app:icon="@drawable/ic_plus"
-            app:layout_constraintBottom_toTopOf="@id/button_zoom_out"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_zoom_out"
-            style="@style/Widget.App.MapIconButton.Square"
-            android:layout_width="@dimen/map_button_size"
-            android:layout_height="@dimen/map_button_size"
-            android:layout_marginEnd="@dimen/common_spacing"
-            android:layout_marginBottom="@dimen/common_spacing"
-            app:icon="@drawable/ic_minus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_zoom_in" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_my_location"
-            style="@style/Widget.App.MapIconButton"
-            android:layout_width="@dimen/map_button_size"
-            android:layout_height="@dimen/map_button_size"
-            android:layout_marginEnd="@dimen/common_spacing"
-            android:layout_marginBottom="@dimen/common_spacing"
-            app:icon="@drawable/ic_my_location"
-            app:layout_constraintBottom_toTopOf="@id/button_bookmark"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/my_location_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:visibility="gone"
-            app:hideAnimationBehavior="outward"
-            app:indicatorSize="@dimen/map_button_size"
-            app:layout_constraintBottom_toBottomOf="@id/button_my_location"
-            app:layout_constraintEnd_toEndOf="@id/button_my_location"
-            app:layout_constraintStart_toStartOf="@id/button_my_location"
-            app:layout_constraintTop_toTopOf="@id/button_my_location"
-            app:showAnimationBehavior="inward" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_bookmark"
-            style="@style/Widget.App.MapIconButton"
-            android:layout_width="@dimen/map_button_size"
-            android:layout_height="@dimen/map_button_size"
-            android:layout_marginEnd="@dimen/common_spacing"
-            android:layout_marginBottom="96dp"
-            app:icon="@drawable/ic_bookmark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
-        android:id="@+id/bottom_sheet"
-        style="@style/Widget.Material3.BottomSheet"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:elevation="0dp"
-        android:focusable="true"
-        app:behavior_hideable="false"
-        app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
-        app:gestureInsetBottomIgnored="true"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:paddingBottomSystemWindowInsets="false"
-        app:paddingTopSystemWindowInsets="false">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        tools:listitem="@layout/item_categories" />
 
-        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
-            android:id="@+id/drag_handle"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_categories"
+        tools:listitem="@layout/item_card" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_zoom_in"
+        style="@style/Widget.App.MapIconButton.Square"
+        android:layout_width="@dimen/map_button_size"
+        android:layout_height="@dimen/map_button_size"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:icon="@drawable/ic_plus"
+        app:layout_constraintBottom_toTopOf="@id/button_zoom_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:contentDescription="@string/image" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_zoom_out"
+        style="@style/Widget.App.MapIconButton.Square"
+        android:layout_width="@dimen/map_button_size"
+        android:layout_height="@dimen/map_button_size"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:icon="@drawable/ic_minus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_zoom_in"
+        android:contentDescription="@string/image" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_my_location"
+        style="@style/Widget.App.MapIconButton"
+        android:layout_width="@dimen/map_button_size"
+        android:layout_height="@dimen/map_button_size"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:layout_marginBottom="@dimen/common_spacing"
+        app:icon="@drawable/ic_my_location"
+        app:layout_constraintBottom_toTopOf="@id/button_bookmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/image" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/my_location_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:hideAnimationBehavior="outward"
+        app:indicatorSize="@dimen/map_button_size"
+        app:layout_constraintBottom_toBottomOf="@id/button_my_location"
+        app:layout_constraintEnd_toEndOf="@id/button_my_location"
+        app:layout_constraintStart_toStartOf="@id/button_my_location"
+        app:layout_constraintTop_toTopOf="@id/button_my_location"
+        app:showAnimationBehavior="inward" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_bookmark"
+        style="@style/Widget.App.MapIconButton"
+        android:layout_width="@dimen/map_button_size"
+        android:layout_height="@dimen/map_button_size"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:layout_marginBottom="96dp"
+        app:icon="@drawable/ic_bookmark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/image" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filter_map"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#275A8A"
+        app:cardCornerRadius="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="0dp">
+
+        <TextView
+            android:id="@+id/tv_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="14dp"
+            android:text="@string/filter"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:drawableEndCompat="@drawable/ic_filter_map" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <!--
+        <FrameLayout
+            android:id="@+id/bottom_sheet"
+            style="@style/Widget.Material3.BottomSheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            app:tint="@color/red" />
+            android:clickable="true"
+            android:elevation="0dp"
+            android:focusable="true"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
+            app:gestureInsetBottomIgnored="true"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            app:paddingBottomSystemWindowInsets="false"
+            app:paddingTopSystemWindowInsets="false">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/bottom_sheet_fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/bottom_sheet_peek_height" />
-    </FrameLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+                android:id="@+id/drag_handle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                app:tint="@color/red" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/bottom_sheet_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bottom_sheet_peek_height" />
+        </FrameLayout>  -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

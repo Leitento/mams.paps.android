@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.events.eventcard.adapter
+package com.gomaping.navigation.ui.map.locationplaygroud.adapter
 
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
@@ -10,42 +10,43 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gomaping.R
 import com.gomaping.databinding.ItemReviewsBinding
 import com.gomaping.navigation.ui.events.eventcard.TypeReview
-import com.gomaping.navigation.ui.events.model.EventReview
+import com.gomaping.navigation.ui.events.eventcard.adapter.CardImageReviewAdapter
+import com.gomaping.navigation.ui.map.model.LocationReviews
 import com.yandex.runtime.Runtime
 
-class ReviewEventAdapter :
-    androidx.recyclerview.widget.ListAdapter<EventReview, ReviewEventAdapter.EventReviewViewHolder>(
+class ReviewsLocationAdapter :
+    androidx.recyclerview.widget.ListAdapter<LocationReviews, ReviewsLocationAdapter.LocationReviewsViewHolder>(
         DiffCallback()
     ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventReviewViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationReviewsViewHolder {
         val binding = ItemReviewsBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return EventReviewViewHolder(binding)
+        return LocationReviewsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: EventReviewViewHolder, position: Int) {
-        val eventReview = getItem(position)
-        holder.bind(eventReview)
+    override fun onBindViewHolder(holder: LocationReviewsViewHolder, position: Int) {
+        val locationReview = getItem(position)
+        holder.bind(locationReview)
     }
 
-    class EventReviewViewHolder(
+    class LocationReviewsViewHolder(
         val binding: ItemReviewsBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(eventReview: EventReview) {
+        fun bind(locationReview: LocationReviews) {
 
             with(binding) {
-                reviewName.text = eventReview.name
-                reviewEventDate.text = eventReview.reviewDate
-                reviewEventText.text = eventReview.reviewText
-                if (eventReview.reviewPhoto.isNotEmpty()) {
-                    val adapter = CardImageReviewAdapter(eventReview.reviewPhoto)
+                reviewName.text = locationReview.name
+                reviewEventDate.text = locationReview.reviewDate
+                reviewEventText.text = locationReview.reviewText
+                if (locationReview.reviewPhoto.isNotEmpty()) {
+                    val adapter = CardImageReviewAdapter(locationReview.reviewPhoto)
                     binding.reviewPhoto.adapter = adapter
                 }
-                if (eventReview.reviewPhoto.isEmpty()) {
+                if (locationReview.reviewPhoto.isEmpty()) {
                     reviewPhoto.visibility = View.GONE
                 }
-                when (eventReview.rating) {
+                when (locationReview.rating) {
                     TypeReview.DISGUSTING -> {
                         star1.setColorStar(itemView)
                     }
@@ -89,12 +90,12 @@ class ReviewEventAdapter :
         }
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<EventReview>() {
-        override fun areItemsTheSame(oldItem: EventReview, newItem: EventReview): Boolean {
+    private class DiffCallback : DiffUtil.ItemCallback<LocationReviews>() {
+        override fun areItemsTheSame(oldItem: LocationReviews, newItem: LocationReviews): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: EventReview, newItem: EventReview): Boolean {
+        override fun areContentsTheSame(oldItem: LocationReviews, newItem: LocationReviews): Boolean {
             return oldItem == newItem
         }
     }

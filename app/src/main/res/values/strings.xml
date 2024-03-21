@@ -98,4 +98,24 @@
     <string name="event_lint_text">Сайт</string>
     <string name="event_price">1500₽ - 5000₽</string>
     <string name="event_price_text">Стоимость</string>
+
+    <!-- Map Filter Main Menu-->
+    <string name="map_filter_title">Фильтр: Игровая площадка</string>
+    <string name="map_filter_equipment">Оборудование</string>
+    <string name="map_filter_size">Размер</string>
+    <string name="map_filter_toilet">Туалет</string>
+    <string name="map_filter_canopy">Навес</string>
+    <string name="map_filter_benches">Лавочки</string>
+    <string name="map_filter_coverage">Покрытие</string>
+    <string name="map_filter_equipment_mgn">Оборудование МГН</string>
+    <string name="map_location">Игровая площадка</string>
+    <string name="map_location_street">Арбатская, 34</string>
+    <string name="map_location_description">Игровая площадка</string>
+    <string name="map_location_distance">1.5км</string>
+    <string name="map_location_reviews">110 отзывов</string>
+    <string name="map_location_schedule">Круглосуточно</string>
+    <string name="map_car_time_location">1 ч 59 мин</string>
+    <string name="map_on_foot_location">1 ч 59 мин</string>
+    <string name="map_bus_time_location">1 ч 59 мин</string>
+    <string name="map_reviwer_location">Отличная площадка, правда, нa выходных очень много народа. Рядом, напротив москвариума Отличная площадка, правда, нa выходных очень много народа. Рядом, напротив москвариума Отличная площадка, правда, нa выходных очень много народа. Рядом, напротив москвариума Отличная площадка, правда, нa выходных очень много народа. Рядом, напротив москвариума Отличная площадка, правда, нa выходных очень много народа. Рядом, напротив москвариума</string>
 </resources>

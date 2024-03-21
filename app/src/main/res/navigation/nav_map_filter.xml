@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_map_filter"
+    app:startDestination="@id/mapCategoriesFragment2">
+
+    <dialog
+        android:id="@+id/mapCategoriesFragment2"
+        android:name="com.gomaping.navigation.ui.map.bottomsheetfragment.MapCategoriesFragment"
+        android:label="MapCategoriesFragment"
+        tools:layout="@layout/fragment_map_categories">
+        <action
+            android:id="@+id/action_mapCategoriesFragment2_to_playgroundFilterFragment2"
+            app:destination="@id/playgroundFilterFragment2" />
+    </dialog>
+    <fragment
+        android:id="@+id/playgroundFilterFragment2"
+        android:name="com.gomaping.navigation.ui.map.PlaygroundFilterFragment"
+        android:label="PlaygroundFilterFragment"
+        tools:layout="@layout/fragment_playground_filter" />
+</navigation>

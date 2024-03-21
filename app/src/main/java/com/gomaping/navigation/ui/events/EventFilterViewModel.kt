@@ -24,17 +24,16 @@ class EventFilterViewModel(
     }
 
 
-
     fun getFilters(filter: Filter): List<EventFilterCheckBox> {
         return repository.getFilters(filter)
     }
 
     fun loadSharePref(): Map<Filter, MutableList<EventFilterCheckBox>> {
-        return sharedPrefUtils.loadFilters()
+        return sharedPrefUtils.loadEventFilters()
     }
 
     fun saveSharedPref(filterMap: MutableMap<Filter, MutableList<EventFilterCheckBox>>) {
-        sharedPrefUtils.saveFilters(filterMap)
+        sharedPrefUtils.saveEventFilters(filterMap)
     }
 
     object Factory : ViewModelProvider.Factory {

@@ -9,7 +9,15 @@
         android:id="@+id/navigation_map"
         android:name="com.gomaping.navigation.ui.map.MapFragment"
         android:label="@string/menu_nearby"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_navigation_map_to_nav_map_filter"
+            app:destination="@id/nav_map_filter" />
+        <action
+            android:id="@+id/action_navigation_map_to_nav_map_playground"
+            app:destination="@id/nav_map_playground" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_add"
@@ -50,4 +58,6 @@
         android:label="fragment_events"
         tools:layout="@layout/fragment_events" />
 
+    <include app:graph="@navigation/nav_map_filter" />
+    <include app:graph="@navigation/nav_map_playground"/>
 </navigation>
