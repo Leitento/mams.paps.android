@@ -16,7 +16,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.auth.ui.AuthActivity
 import com.gomaping.databinding.ActivityOnboardingBinding
-import com.gomaping.navigation.ui.events.SharedPrefUtils
 
 class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
 

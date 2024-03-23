@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels

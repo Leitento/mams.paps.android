@@ -9,7 +9,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.databinding.FragmentLocationCardBinding
 import com.gomaping.navigation.ui.events.eventcard.ImageModel
-import com.gomaping.navigation.ui.events.eventcard.adapter.ViewPagerAdapter
 import com.gomaping.navigation.ui.map.locationplaygroud.adapter.CardImageLocationAdapter
 import com.gomaping.navigation.ui.map.locationplaygroud.adapter.ViewPagerLocationAdapter
 import com.google.android.material.tabs.TabLayoutMediator

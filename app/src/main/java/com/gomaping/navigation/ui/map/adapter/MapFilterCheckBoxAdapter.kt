@@ -1,7 +1,6 @@
 package com.gomaping.navigation.ui.map.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
