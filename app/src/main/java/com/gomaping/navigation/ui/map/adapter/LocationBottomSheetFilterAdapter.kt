@@ -20,7 +20,7 @@ class LocationBottomSheetFilterAdapter(private val filter: List<MapFilter>) :
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
         val image = holder.itemView.findViewById<ImageView>(R.id.filter_categories)
         when (filter[position]) {
-            MapFilter.RATING -> { image.setImageResource(filter[position].image) }
+            MapFilter.RATING -> { }
             MapFilter.AGE_GROUP -> { image.setImageResource(filter[position].image) }
             MapFilter.EQUIPMENT -> { image.setImageResource(filter[position].image) }
             MapFilter.BENCHES -> { image.setImageResource(filter[position].image) }

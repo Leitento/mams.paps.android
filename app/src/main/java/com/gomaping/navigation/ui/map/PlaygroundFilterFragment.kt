@@ -56,15 +56,15 @@ class PlaygroundFilterFragment : Fragment(R.layout.fragment_playground_filter) {
         val adapter = MapFilterMainAdapter(object : OnMapItemClickListener {
             override fun onItemClick(filter: MapFilter) {
                 val newData = filterSettings[filter] ?: listOf()
-                filterAdapter.submitList(newData)
+                filterAdapter.submitList(newData) { filterAdapter.checkBoxStateArray.clear()}
             }
         }, viewModel.getMainFilters())
         binding.recyclerMainFilter.adapter = adapter
         val firstList = filterSettings[MapFilter.RATING]?.toList()
         if (firstList != null) {
-            filterAdapter.submitList(firstList)
+            filterAdapter.submitList(firstList){ filterAdapter.checkBoxStateArray.clear()}
         } else {
-            filterAdapter.submitList(viewModel.getFilters(MapFilter.RATING))
+            filterAdapter.submitList(viewModel.getFilters(MapFilter.RATING)){ filterAdapter.checkBoxStateArray.clear()}
         }
         binding.recyclerFilter.adapter = filterAdapter
 

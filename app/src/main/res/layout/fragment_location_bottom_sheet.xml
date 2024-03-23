@@ -17,7 +17,7 @@
             android:id="@+id/location_street"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Арбатская, 34"
+            android:text="@string/map_location_street"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
             android:id="@+id/location_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Игровая площадка"
+            android:text="@string/map_location"
             android:textColor="#275A8A"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/location_street"
@@ -39,7 +39,8 @@
             android:src="@drawable/ic_close"
             app:layout_constraintBottom_toBottomOf="@+id/location_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/location_street" />
+            app:layout_constraintTop_toTopOf="@+id/location_street"
+            android:contentDescription="@string/image" />
 
         <TextView
             android:id="@+id/reviews_location"
@@ -61,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:text="80 отзывов"
+            android:text="@string/map_location_reviews"
             android:textColor="#4F4F4F"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/reviews_location"
@@ -72,7 +73,7 @@
             android:id="@+id/schedule_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Круглосуточно"
+            android:text="@string/map_location_schedule"
             android:textColor="#4F4F4F"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/reviews_count"
@@ -118,7 +119,8 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_route" />
+            android:src="@drawable/ic_route"
+            android:contentDescription="@string/image" />
 
         <ImageView
             android:id="@+id/button_flag"
@@ -126,7 +128,8 @@
             android:layout_height="48dp"
             android:layout_marginStart="6dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_flags" />
+            android:src="@drawable/ic_flags"
+            android:contentDescription="@string/image" />
 
         <ImageView
             android:id="@+id/button_share"
@@ -134,7 +137,8 @@
             android:layout_height="48dp"
             android:layout_marginStart="6dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_share" />
+            android:src="@drawable/ic_share"
+            android:contentDescription="@string/image" />
 
         <TextView
             android:id="@+id/on_foot_location"
@@ -143,7 +147,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="10dp"
             android:drawablePadding="6dp"
-            android:text="14 мин 1.5км"
+            android:text="@string/map_location_on_foot"
             android:textSize="14sp"
             app:drawableStartCompat="@drawable/ic_people" />
 

@@ -1,5 +1,6 @@
 package com.gomaping.navigation.ui.map.bottomsheetfragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
@@ -10,6 +11,8 @@ import com.gomaping.common.ui.ActionButtonAdapter
 import com.gomaping.common.ui.AdaptiveSpacingItemDecoration
 import com.gomaping.databinding.FragmentMapCategoriesBinding
 import com.gomaping.navigation.model.MapCategory
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MapCategoriesFragment : BottomSheetDialogFragment(R.layout.fragment_map_categories) {
@@ -68,5 +71,18 @@ class MapCategoriesFragment : BottomSheetDialogFragment(R.layout.fragment_map_ca
             categoriesList.adapter = adapter
         }
         adapter.submitList(actionButtonList)
+    }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        dialog.setOnShowListener { it ->
+            val bottomSheetDialog = it as BottomSheetDialog
+            val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let {
+                val behavior = BottomSheetBehavior.from(it)
+                behavior.isFitToContents = true
+                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+        }
+        return dialog
     }
 }

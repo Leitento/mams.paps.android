@@ -32,12 +32,9 @@ import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.search.SearchView
 import com.google.android.material.snackbar.Snackbar
 import com.yandex.mapkit.Animation
-import com.yandex.mapkit.GeoObject
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.BoundingBox
 import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.layers.GeoObjectTapEvent
-import com.yandex.mapkit.layers.GeoObjectTapListener
 import com.yandex.mapkit.logo.Alignment
 import com.yandex.mapkit.logo.HorizontalAlignment
 import com.yandex.mapkit.logo.Padding
@@ -47,7 +44,6 @@ import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.CameraUpdateReason
 import com.yandex.mapkit.map.IconStyle
 import com.yandex.mapkit.map.Map
-import com.yandex.mapkit.map.MapObject
 import com.yandex.mapkit.map.MapObjectTapListener
 import com.yandex.mapkit.map.PlacemarkMapObject
 import com.yandex.mapkit.mapview.MapView
@@ -69,7 +65,7 @@ import java.util.concurrent.CancellationException
 import kotlin.random.Random
 
 @FlowPreview
-class MapFragment : Fragment(R.layout.fragment_map) {
+class MapFragment : Fragment(R.layout.fragment_map){
 
     private val viewModel: MapViewModel by viewModels { MapViewModel.Factory }
     private val binding by viewBinding(FragmentMapBinding::bind)
@@ -171,8 +167,12 @@ class MapFragment : Fragment(R.layout.fragment_map) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+    }
+
+    override fun onDetach() {
+        viewModel.clearAll()
+        super.onDetach()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -182,7 +182,6 @@ class MapFragment : Fragment(R.layout.fragment_map) {
             searchBar.updateLayoutParams<MarginLayoutParams> {
                 topMargin = insets.top + resources.getDimensionPixelOffset(R.dimen.common_spacing)
             }
-
             windowInsets
         }
 
@@ -276,17 +275,6 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                         ),
                         iconStyle
                     )
-            /*        if (selectedPlaceMark != mapObject && isSelectedPlaceMakr) {
-                        selectedPlaceMark?.setIcon(
-                            ImageProvider.fromResource(
-                                requireContext(),
-                                R.drawable.playground
-                            ),
-                            iconStyle
-                        )
-                    }
-
-             */
                     selectedPlaceMark = mapObject
                     isSelectedPlaceMakr = true
                     findNavController().navigate(R.id.nav_map_playground)
@@ -356,7 +344,6 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         map = null
         geoSuggestAdapter = null
         listPlaceMarks.clear()
-        viewModel.clearAll()
         super.onDestroyView()
     }
 
@@ -508,7 +495,6 @@ class MapFragment : Fragment(R.layout.fragment_map) {
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel.clearAll()
     }
 
     companion object {
@@ -519,4 +505,5 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         private val MOVE_ANIMATION = Animation(Animation.Type.SMOOTH, 0.5f)
         private const val SUGGEST_DEBOUNCE_TIMEOUT = 300L
     }
+
 }

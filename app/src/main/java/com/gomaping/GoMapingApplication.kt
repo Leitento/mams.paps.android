@@ -18,5 +18,6 @@ class GoMapingApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         MapKitFactory.setApiKey(BuildConfig.MAPKIT_API_KEY)
+        SharedPrefUtils(this).ClearAll()
     }
 }

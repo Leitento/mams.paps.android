@@ -16,7 +16,6 @@ import com.gomaping.navigation.ui.map.model.MapFilter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class LocationBottomSheetFragment : BottomSheetDialogFragment(R.layout.fragment_location_bottom_sheet) {
-
     private val viewModel: MapViewModel by viewModels { MapViewModel.Factory }
     private val binding by viewBinding(FragmentLocationBottomSheetBinding::bind)
     private val adapter: LocationBottomSheetPhotoAdapter by lazy { LocationBottomSheetPhotoAdapter(getPhoto(), object : OnClickLocationListener{
@@ -25,6 +24,7 @@ class LocationBottomSheetFragment : BottomSheetDialogFragment(R.layout.fragment_
         }
     }) }
     private val filterAdapter: LocationBottomSheetFilterAdapter by lazy { LocationBottomSheetFilterAdapter(getFilterPhoto()) }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +40,8 @@ class LocationBottomSheetFragment : BottomSheetDialogFragment(R.layout.fragment_
             ImageModel(R.drawable.playground_one),
             ImageModel(R.drawable.playground_three),
             ImageModel(R.drawable.playground_two),
+            ImageModel(R.drawable.playground_four),
+            ImageModel(R.drawable.playground_five),
         )
     }
 

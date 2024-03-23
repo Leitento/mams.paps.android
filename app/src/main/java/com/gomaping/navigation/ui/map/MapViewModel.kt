@@ -6,7 +6,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.gomaping.GoMapingApplication
 import com.gomaping.navigation.model.MapCategory
-import com.gomaping.navigation.ui.events.EventsViewModel
 import com.gomaping.navigation.ui.events.SharedPrefUtils
 import com.gomaping.navigation.ui.map.model.MapFilter
 import com.gomaping.navigation.ui.map.model.MapFilterCheckBox
@@ -24,10 +23,6 @@ class MapViewModel(
     val searchQuery = _searchQuery.asStateFlow()
 
     private val checkedItems = mutableListOf<MapFilter?>()
-
-    fun setCategory(category: MapCategory) {
-        _selectedCategory.value = category
-    }
 
     fun setSearchQuery(query: String) {
         _searchQuery.value = query
@@ -74,7 +69,7 @@ class MapViewModel(
     fun getListOfKeyIsNonEmpty(): List<MapFilter> {
         val map = loadSharePref()
         return map.filter { (_, value) ->
-            value.any { it.isChecked }
+            value.any { it.isChecked && it.filter != MapFilter.RATING }
         }.keys.toList()
     }
 

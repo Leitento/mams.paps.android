@@ -40,6 +40,8 @@ class LocationReviewsFragment : Fragment(R.layout.fragment_location_reviews) {
                     ImageModel(R.drawable.playground_one),
                     ImageModel(R.drawable.playground_two),
                     ImageModel(R.drawable.playground_three),
+                    ImageModel(R.drawable.playground_four),
+                    ImageModel(R.drawable.playground_five),
                 )
             ),
             LocationReviews(
