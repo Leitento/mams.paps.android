@@ -18,13 +18,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class LocationBottomSheetFragment : BottomSheetDialogFragment(R.layout.fragment_location_bottom_sheet) {
     private val viewModel: MapViewModel by viewModels { MapViewModel.Factory }
     private val binding by viewBinding(FragmentLocationBottomSheetBinding::bind)
-    private val adapter: LocationBottomSheetPhotoAdapter by lazy { LocationBottomSheetPhotoAdapter(getPhoto(), object : OnClickLocationListener{
-        override fun onClickLocation() {
-            findNavController().navigate(R.id.action_locationBottomSheetFragment_to_locationCardFragment)
-        }
-    }) }
-    private val filterAdapter: LocationBottomSheetFilterAdapter by lazy { LocationBottomSheetFilterAdapter(getFilterPhoto()) }
-
+    private val adapter: LocationBottomSheetPhotoAdapter by lazy {
+        LocationBottomSheetPhotoAdapter(getPhoto(), object : OnClickLocationListener {
+            override fun onClickLocation() {
+                findNavController().navigate(R.id.action_locationBottomSheetFragment_to_locationCardFragment)
+            }
+        })
+    }
+    private val filterAdapter: LocationBottomSheetFilterAdapter by lazy {
+        LocationBottomSheetFilterAdapter(
+            getFilterPhoto()
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

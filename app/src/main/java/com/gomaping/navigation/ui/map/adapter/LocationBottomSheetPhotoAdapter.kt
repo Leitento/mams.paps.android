@@ -14,7 +14,7 @@ interface OnClickLocationListener {
 
 class LocationBottomSheetPhotoAdapter(
     val photo: List<ImageModel>,
-    val listener: OnClickLocationListener
+    private val listener: OnClickLocationListener
 ) :
     RecyclerView.Adapter<LocationBottomSheetPhotoAdapter.ImageHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {

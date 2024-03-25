@@ -65,7 +65,7 @@ import java.util.concurrent.CancellationException
 import kotlin.random.Random
 
 @FlowPreview
-class MapFragment : Fragment(R.layout.fragment_map){
+class MapFragment : Fragment(R.layout.fragment_map) {
 
     private val viewModel: MapViewModel by viewModels { MapViewModel.Factory }
     private val binding by viewBinding(FragmentMapBinding::bind)
@@ -75,7 +75,6 @@ class MapFragment : Fragment(R.layout.fragment_map){
 
     private var selectedPlaceMark: PlacemarkMapObject? = null
     private var isSelectedPlaceMakr: Boolean = false
-
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var moveCameraJob: Job? = null
@@ -170,12 +169,14 @@ class MapFragment : Fragment(R.layout.fragment_map){
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
-    override fun onDetach() {
-        viewModel.clearAll()
-        super.onDetach()
+    override fun onResume() {
+        super.onResume()
+        val booleanValue = arguments?.getBoolean("value") ?: false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val booleanValue = arguments?.getBoolean("value") ?: false
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.searchBar) { searchBar, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
@@ -277,6 +278,7 @@ class MapFragment : Fragment(R.layout.fragment_map){
                     )
                     selectedPlaceMark = mapObject
                     isSelectedPlaceMakr = true
+
                     findNavController().navigate(R.id.nav_map_playground)
                 }
                 true
@@ -493,10 +495,6 @@ class MapFragment : Fragment(R.layout.fragment_map){
                 || coarseLocationPermission == PackageManager.PERMISSION_GRANTED)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     companion object {
         private val DEFAULT_POINT = Point(55.753546, 37.621204)
         private const val DEFAULT_ZOOM = 11f
@@ -505,5 +503,4 @@ class MapFragment : Fragment(R.layout.fragment_map){
         private val MOVE_ANIMATION = Animation(Animation.Type.SMOOTH, 0.5f)
         private const val SUGGEST_DEBOUNCE_TIMEOUT = 300L
     }
-
 }

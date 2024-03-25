@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gomaping.R
 import com.gomaping.databinding.ItemCardBinding
 import com.gomaping.navigation.ui.map.model.MapFilter
 
@@ -36,37 +37,56 @@ private val onMapClickListener: OnMapClickListener,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MapFilter?) = with(binding) {
             when (item) {
+                MapFilter.RATING -> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = RATING }
+                MapFilter.AGE_GROUP -> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = AGE_GROUP }
+                MapFilter.EQUIPMENT -> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = EQUIPMENT }
+                MapFilter.SIZE-> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = SIZE }
+                MapFilter.TOILET -> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = TOILET }
+                MapFilter.CANOPY -> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = CANOPY }
+                MapFilter.BENCHES-> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = BENCHES }
+                MapFilter.COVERAGE-> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = COVERAGE }
+                MapFilter.EQUIPMENT_MGN-> {
+                    setColorItem(itemView.resources.getColor(R.color.red, null), Color.WHITE)
+                    textFilter.text = EQUIPMENT_MGN }
                 null -> {
-                    val colorStateList = ColorStateList.valueOf(Color.WHITE)
-                    cardFilter.backgroundTintList = colorStateList
-                    textFilter.setTextColor(Color.BLACK)
-                    ivDelete.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN)
-                    textFilter.text = DELETE_ALL
-                }
-                MapFilter.RATING -> { textFilter.text = RATING }
-                MapFilter.AGE_GROUP -> { textFilter.text = AGE_GROUP }
-                MapFilter.EQUIPMENT -> { textFilter.text = EQUIPMENT }
-                MapFilter.SIZE-> { textFilter.text = SIZE }
-                MapFilter.TOILET -> { textFilter.text = TOILET }
-                MapFilter.CANOPY -> { textFilter.text = CANOPY }
-                MapFilter.BENCHES-> { textFilter.text = BENCHES }
-                MapFilter.COVERAGE-> { textFilter.text = COVERAGE }
-                MapFilter.EQUIPMENT_MGN-> { textFilter.text = EQUIPMENT_MGN }
+                    setColorItem(Color.WHITE, Color.BLACK)
+                    textFilter.text = DELETE_ALL}
             }
             binding.ivDelete.setOnClickListener {
                 onMapClickListener.OnDelete(adapterPosition)
             }
         }
-
+        private fun setColorItem(backgroundColor: Int, textColor: Int) = with(binding){
+            val colorStateList = ColorStateList.valueOf(backgroundColor)
+            cardFilter.backgroundTintList = colorStateList
+            textFilter.setTextColor(textColor)
+            ivDelete.setColorFilter(textColor, PorterDuff.Mode.SRC_IN)
+        }
     }
 
     private class DiffCallback : DiffUtil.ItemCallback<MapFilter>() {
         override fun areItemsTheSame(oldItem: MapFilter, newItem: MapFilter): Boolean {
-            return oldItem == newItem
+            return oldItem.image == newItem.image
         }
 
         override fun areContentsTheSame(oldItem: MapFilter, newItem: MapFilter): Boolean {
-            return true
+            return oldItem == newItem
         }
     }
 
