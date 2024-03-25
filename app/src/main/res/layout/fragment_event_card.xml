@@ -168,7 +168,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:drawablePadding="4dp"
-
                     android:gravity="center"
                     android:text="1 ч 59 мин"
                     android:textSize="14sp"

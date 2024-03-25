@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".navigation.ui.map.bottomsheetfragment.LocationBottomSheetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/location_street"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map_location_street"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/location_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map_location"
+            android:textColor="#275A8A"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/location_street"
+            app:layout_constraintTop_toBottomOf="@id/location_street" />
+
+        <ImageView
+            android:id="@+id/location_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/location_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/location_street"
+            android:contentDescription="@string/image" />
+
+        <TextView
+            android:id="@+id/reviews_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/textview_background"
+            android:drawablePadding="4dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/reviews_event"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:drawableEndCompat="@drawable/ic_star"
+            app:layout_constraintStart_toStartOf="@id/location_street"
+            app:layout_constraintTop_toBottomOf="@id/location_name" />
+
+        <TextView
+            android:id="@+id/reviews_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="@string/map_location_reviews"
+            android:textColor="#4F4F4F"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/reviews_location"
+            app:layout_constraintStart_toEndOf="@+id/reviews_location"
+            app:layout_constraintTop_toTopOf="@+id/reviews_location" />
+
+        <TextView
+            android:id="@+id/schedule_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map_location_schedule"
+            android:textColor="#4F4F4F"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/reviews_count"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/reviews_count" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filter_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_event_text"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_location_photo" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filter_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_event_text"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_image_categories" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/button_route"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_route"
+            android:contentDescription="@string/image" />
+
+        <ImageView
+            android:id="@+id/button_flag"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_flags"
+            android:contentDescription="@string/image" />
+
+        <ImageView
+            android:id="@+id/button_share"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_share"
+            android:contentDescription="@string/image" />
+
+        <TextView
+            android:id="@+id/on_foot_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="6dp"
+            android:text="@string/map_location_on_foot"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_people" />
+
+    </LinearLayout>
+</LinearLayout>

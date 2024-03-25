@@ -1,10 +1,9 @@
-package com.gomaping.navigation.ui.map
+package com.gomaping.navigation.ui.map.bottomsheetfragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gomaping.R
 import com.gomaping.common.ui.ActionButton
@@ -12,8 +11,11 @@ import com.gomaping.common.ui.ActionButtonAdapter
 import com.gomaping.common.ui.AdaptiveSpacingItemDecoration
 import com.gomaping.databinding.FragmentMapCategoriesBinding
 import com.gomaping.navigation.model.MapCategory
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class MapCategoriesFragment : Fragment(R.layout.fragment_map_categories) {
+class MapCategoriesFragment : BottomSheetDialogFragment(R.layout.fragment_map_categories) {
 
     private val actionButtonList = listOf(
         ActionButton(
@@ -53,10 +55,12 @@ class MapCategoriesFragment : Fragment(R.layout.fragment_map_categories) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val itemHeight = resources.getDimensionPixelSize(R.dimen.categories_action_button_size)
         val adapter = ActionButtonAdapter(itemHeight) { actionId ->
-            setFragmentResult(
-                REQUEST_KEY_CATEGORY, bundleOf(
-                RESULT_KEY_CATEGORY_NAME to actionId
-            ))
+
+            when (actionId) {
+                MapCategory.PLAYGROUND.name -> {
+                    findNavController().navigate(R.id.action_mapCategoriesFragment2_to_playgroundFilterFragment2)
+                }
+            }
         }
         with(binding) {
             categoriesList.addItemDecoration(
@@ -68,9 +72,17 @@ class MapCategoriesFragment : Fragment(R.layout.fragment_map_categories) {
         }
         adapter.submitList(actionButtonList)
     }
-
-    companion object {
-        const val REQUEST_KEY_CATEGORY = "requestKeyCategory"
-        const val RESULT_KEY_CATEGORY_NAME = "category"
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        dialog.setOnShowListener { it ->
+            val bottomSheetDialog = it as BottomSheetDialog
+            val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let {
+                val behavior = BottomSheetBehavior.from(it)
+                behavior.isFitToContents = true
+                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+        }
+        return dialog
     }
 }

@@ -74,7 +74,6 @@ class OnboardingActivity : AppCompatActivity(R.layout.activity_onboarding) {
         }
         setupOnboardingStage(currentStageIndex)
     }
-
     private fun setupOnboardingStage(index: Int) {
         val stage = onboardingStages[index]
 

@@ -8,7 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gomaping.R
-import com.gomaping.databinding.ItemEventReviewBinding
+import com.gomaping.databinding.ItemReviewsBinding
 import com.gomaping.navigation.ui.events.eventcard.TypeReview
 import com.gomaping.navigation.ui.events.model.EventReview
 import com.yandex.runtime.Runtime
@@ -18,7 +18,7 @@ class ReviewEventAdapter :
         DiffCallback()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventReviewViewHolder {
-        val binding = ItemEventReviewBinding.inflate(
+        val binding = ItemReviewsBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return EventReviewViewHolder(binding)
@@ -30,7 +30,7 @@ class ReviewEventAdapter :
     }
 
     class EventReviewViewHolder(
-        val binding: ItemEventReviewBinding,
+        val binding: ItemReviewsBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(eventReview: EventReview) {
 

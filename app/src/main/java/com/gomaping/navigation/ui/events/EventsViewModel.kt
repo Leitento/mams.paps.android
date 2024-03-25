@@ -64,11 +64,11 @@ class EventsViewModel(
     }
 
     fun loadSharePref(): Map<Filter, MutableList<EventFilterCheckBox>> {
-        return sharedPrefUtils.loadFilters()
+        return sharedPrefUtils.loadEventFilters()
     }
 
     fun saveSharedPref(filterMap: MutableMap<Filter, MutableList<EventFilterCheckBox>>) {
-        sharedPrefUtils.saveFilters(filterMap)
+        sharedPrefUtils.saveEventFilters(filterMap)
     }
 
     fun clearAll() {
