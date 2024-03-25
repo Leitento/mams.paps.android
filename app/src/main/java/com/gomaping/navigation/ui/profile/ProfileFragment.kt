@@ -15,6 +15,7 @@ import coil.load
 import com.gomaping.NavMainDirections
 import com.gomaping.R
 import com.gomaping.databinding.FragmentProfileBinding
+import com.gomaping.navigation.ui.profile.adapters.ProfileMenuAdapter
 import kotlinx.coroutines.launch
 
 

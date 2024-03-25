@@ -1,4 +1,4 @@
-package com.gomaping.navigation.ui.profile
+package com.gomaping.navigation.ui.profile.adapters
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.gomaping.databinding.ItemProfileMenuBinding
+import com.gomaping.navigation.ui.profile.ProfileMenuItem
+import com.gomaping.navigation.ui.profile.ProfileMenuItemClickListener
 
 class ProfileMenuAdapter(
     private val clickListener: ProfileMenuItemClickListener

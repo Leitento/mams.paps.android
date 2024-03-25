@@ -169,14 +169,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
-    override fun onResume() {
-        super.onResume()
-        val booleanValue = arguments?.getBoolean("value") ?: false
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val booleanValue = arguments?.getBoolean("value") ?: false
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.searchBar) { searchBar, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
