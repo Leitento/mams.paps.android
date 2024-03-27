@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -52,20 +51,6 @@ class NavigationActivity : AppCompatActivity(R.layout.activity_navigation) {
             if (savedInstanceState == null) {
                 val destinationId = intent.getIntExtra(ARG_NAVIGATE_TO, DEFAULT_DESTINATION_ID)
                 bottomNavigationView.selectedItemId = destinationId
-            }
-
-            navController.addOnDestinationChangedListener { _, destanetion, _ ->
-                when (destanetion.id) {
-                    R.id.navigation_map, R.id.navigation_nearby, R.id.navigation_profile,
-                    R.id.navigation_add,R.id.mapCategoriesFragment2, R.id.playgroundFilterFragment2
-                    -> {
-                        bottomNavigationView.visibility = View.VISIBLE
-                    }
-
-                    else -> {
-                        bottomNavigationView.visibility = View.GONE
-                    }
-                }
             }
         }
     }
