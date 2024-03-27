@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_change_profile"
+    app:startDestination="@id/changeProfileFragment2">
+
+    <fragment
+        android:id="@+id/changeProfileFragment2"
+        android:name="com.gomaping.navigation.ui.profile.ChangeProfileFragment"
+        android:label="fragment_change_profile"
+        tools:layout="@layout/fragment_change_profile" />
+</navigation>
