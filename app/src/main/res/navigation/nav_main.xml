@@ -29,7 +29,14 @@
         android:id="@+id/navigation_profile"
         android:name="com.gomaping.navigation.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_publicOfferFragment"
+            app:destination="@id/publicOfferFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_aboutAppFragment2"
+            app:destination="@id/aboutAppFragment2" />
+    </fragment>
 
     <activity
         android:id="@+id/main_activity"
@@ -58,6 +65,18 @@
         android:label="fragment_events"
         tools:layout="@layout/fragment_events" />
 
+    <fragment
+        android:id="@+id/publicOfferFragment"
+        android:name="com.gomaping.navigation.ui.profile.PublicOfferFragment"
+        android:label="fragment_public_offer"
+        tools:layout="@layout/fragment_public_offer"/>
+    <fragment
+        android:id="@+id/aboutAppFragment2"
+        android:name="com.gomaping.navigation.ui.profile.AboutAppFragment"
+        android:label="AboutAppFragment"
+        tools:layout="@layout/fragment_about_app"/>
+
     <include app:graph="@navigation/nav_map_filter" />
-    <include app:graph="@navigation/nav_map_playground"/>
+    <include app:graph="@navigation/nav_map_playground" />
+    <include app:graph="@navigation/nav_change_profile"/>
 </navigation>

@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent" /> <!-- Белый фон -->
+    <corners android:radius="16dp" /> <!-- Закругление углов -->
+    <stroke android:width="4dp" android:color="#275A8A" /> <!-- Синяя окантовка -->
+</shape>

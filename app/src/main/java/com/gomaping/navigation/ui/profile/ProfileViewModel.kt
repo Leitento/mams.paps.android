@@ -39,7 +39,9 @@ class ProfileViewModel(
                 photo = "https://source.unsplash.com/user/c_v_r",
                 name = "Василий Иванов",
                 town = "Москва",
-                email = "user@example.com"
+                email = "user@example.com",
+                phone = "+7(978)814-74-85",
+                birthday = "11.12.2003"
             )
         }
     }
@@ -64,7 +66,9 @@ data class UiState(
     val photo: String? = null,
     val name: String = "",
     val town: String = "",
-    val email: String = ""
+    val email: String = "",
+    val phone: String = "",
+    val birthday: String = "",
 )
 
 sealed interface UiEvent {

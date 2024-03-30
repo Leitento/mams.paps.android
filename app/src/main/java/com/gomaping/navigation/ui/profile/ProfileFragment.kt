@@ -28,8 +28,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         when (profileMenuItem.titleResId) {
             R.string.profile_menu_favourites -> {}
             R.string.profile_menu_notifications -> {}
-            R.string.profile_menu_public_offer -> {}
-            R.string.profile_menu_about_app -> {}
+            R.string.profile_menu_public_offer -> {
+                findNavController().navigate(R.id.action_navigation_profile_to_publicOfferFragment)
+            }
+
+            R.string.profile_menu_about_app -> {
+                findNavController().navigate(R.id.action_navigation_profile_to_aboutAppFragment2)
+            }
+
             R.string.profile_menu_support -> {}
             R.string.profile_menu_log_out -> {
                 viewModel.logOut()
@@ -67,7 +73,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = ProfileMenuAdapter(menuClickListener)
-
         with(binding) {
             becomeAgentButton.setOnClickListener {
                 Toast.makeText(requireContext(), R.string.profile_become_agent, Toast.LENGTH_SHORT)
@@ -76,11 +81,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
             menuRecyclerView.adapter = adapter
             adapter.items = menuItems
+
+            toolbar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.edit_profile -> {
+                        findNavController().navigate(R.id.nav_change_profile)
+                    }
+                }
+                true
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
-                .collect(::handleUiState)
+            viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect{
+                handleUiState(it)
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
